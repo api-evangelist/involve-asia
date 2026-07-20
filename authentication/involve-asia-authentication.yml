@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/involve-asia-publisher-openapi.yml
+docs: https://api.involve.asia/docs/#auth
+summary:
+  types:
+  - http
+  scheme: bearer
+  bearer_format: JWT
+flow:
+  type: key-secret-exchange
+  steps:
+    - POST /authenticate with form fields key + secret returns {data:{token}}.
+    - Send Authorization Bearer <token> on every other call.
+  token_ttl: 2 hours
+  caching: Cache the token ~110 minutes and refresh proactively (or on 401).
+  key_management: https://app.involve.asia/v2/publisher/api-keys
+  reauth_on_401: Re-authenticate once and retry the original request.
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/involve-asia-publisher-openapi.yml
+notes:
+  - Requests are application/x-www-form-urlencoded; use --data-urlencode so secrets with + / = are not mangled.
+  - JWT auth errors may break the standard envelope (e.g. {message,status_code} or {error}). See errors/involve-asia-problem-types.yml.
