@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: Involve Asia Publisher Auth API
+  version: v2
+  description: 'Public-facing Publisher API. Bearer JWT auth (2 hours TTL). Throttle: 60 requests / minute per account.'
+  license:
+    name: Proprietary — Involve Asia
+    url: https://involve.asia/
+servers:
+- url: https://api.involve.asia/api
+security:
+- bearerAuth: []
+tags:
+- name: Auth
+paths:
+  /authenticate:
+    post:
+      operationId: authenticate
+      summary: Authenticate
+      description: Exchange your API key and secret for a bearer token. Tokens expire after 2 hours — cache them and refresh proactively (or on 401).
+      tags:
+      - Auth
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Your API key. Manage at https://app.involve.asia/v2/publisher/api-keys (Tools → API).
+                secret:
+                  type: string
+                  description: Your API secret. Treat like a password.
+              required:
+              - key
+              - secret
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          description: Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).
+        '429':
+          description: Rate limit exceeded. Back off 250 → 500 → 1000 ms.
+        '500':
+          description: Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.
+components:
+  schemas:
+    ResponseEnvelope:
+      type: object
+      required:
+      - status
+      - data
+      properties:
+        status:
+          type: string
+          description: '`success` or `error`.'
+          examples:
+          - success
+        message:
+          type: string
+          description: Human-readable status message.
+        data:
+          description: 'Endpoint-specific payload. Paginated list endpoints wrap a `{ page, limit, count, nextPage, data: [...] }` object here; single-record endpoints place the record directly.'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

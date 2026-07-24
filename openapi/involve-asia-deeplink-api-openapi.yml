@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: Involve Asia Publisher Auth Deeplink API
+  version: v2
+  description: 'Public-facing Publisher API. Bearer JWT auth (2 hours TTL). Throttle: 60 requests / minute per account.'
+  license:
+    name: Proprietary — Involve Asia
+    url: https://involve.asia/
+servers:
+- url: https://api.involve.asia/api
+security:
+- bearerAuth: []
+tags:
+- name: Deeplink
+paths:
+  /deeplink/generate:
+    post:
+      operationId: deeplink
+      summary: Generate deeplink
+      description: Convert a destination URL into a trackable affiliate link. Capped at 1,000 unique links per rolling 30-day window per account.
+      tags:
+      - Deeplink
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer {token}
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                offer_id:
+                  type: integer
+                  description: Offer ID from /offers/all. **Resolve first** — an unknown offer_id returns HTTP 500 with a generic 'Something went wrong' message (see Error model).
+                url:
+                  type: string
+                  description: Destination URL — must belong to one of the offer's whitelisted domains. A non-whitelisted host returns the same HTTP 500.
+                aff_sub:
+                  type: string
+                  description: Sub ID 1 — note the param name has no number. Surfaces on the conversion as `aff_sub1`. Up to 255 chars.
+                aff_sub2:
+                  type: string
+                  description: Sub ID 2.
+                aff_sub3:
+                  type: string
+                  description: Sub ID 3.
+                aff_sub4:
+                  type: string
+                  description: Sub ID 4.
+                aff_sub5:
+                  type: string
+                  description: Sub ID 5.
+              required:
+              - offer_id
+              - url
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          description: Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).
+        '429':
+          description: Rate limit exceeded. Back off 250 → 500 → 1000 ms.
+        '500':
+          description: Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.
+components:
+  schemas:
+    ResponseEnvelope:
+      type: object
+      required:
+      - status
+      - data
+      properties:
+        status:
+          type: string
+          description: '`success` or `error`.'
+          examples:
+          - success
+        message:
+          type: string
+          description: Human-readable status message.
+        data:
+          description: 'Endpoint-specific payload. Paginated list endpoints wrap a `{ page, limit, count, nextPage, data: [...] }` object here; single-record endpoints place the record directly.'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  title: Involve Asia Publisher Auth Shopee API
+  version: v2
+  description: 'Public-facing Publisher API. Bearer JWT auth (2 hours TTL). Throttle: 60 requests / minute per account.'
+  license:
+    name: Proprietary — Involve Asia
+    url: https://involve.asia/
+servers:
+- url: https://api.involve.asia/api
+security:
+- bearerAuth: []
+tags:
+- name: Shopee
+paths:
+  /shopeextra/all:
+    post:
+      operationId: shopeeXtra
+      summary: Shopee Xtra brands
+      description: Boosted-payout brands enrolled in Shopee Commission Xtra. Refresh nightly. Page size cap is 200 (higher than other endpoints).
+      tags:
+      - Shopee
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer {token}
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: Page number (default 1).
+                limit:
+                  type: integer
+                  description: Page size, default 200, **max 200**.
+                filters[country]:
+                  type: string
+                  description: One of `Malaysia`, `Singapore`, `Indonesia`, `Thailand`, `Vietnam`, `Philippines`, `Taiwan`.
+                filters[shop_name]:
+                  type: string
+                  description: Substring match on shop name (or a Shopee shop URL — the shop_id is parsed out).
+                filters[shop_type]:
+                  type: string
+                  description: '`mall` or `preferred`.'
+                filters[sort_type]:
+                  type: string
+                  description: '`latest_updated`, `high_commission`, or default (shop_name ASC).'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          description: Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).
+        '429':
+          description: Rate limit exceeded. Back off 250 → 500 → 1000 ms.
+        '500':
+          description: Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.
+components:
+  schemas:
+    ResponseEnvelope:
+      type: object
+      required:
+      - status
+      - data
+      properties:
+        status:
+          type: string
+          description: '`success` or `error`.'
+          examples:
+          - success
+        message:
+          type: string
+          description: Human-readable status message.
+        data:
+          description: 'Endpoint-specific payload. Paginated list endpoints wrap a `{ page, limit, count, nextPage, data: [...] }` object here; single-record endpoints place the record directly.'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

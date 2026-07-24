@@ -1,0 +1,221 @@
+openapi: 3.1.0
+info:
+  title: Involve Asia Publisher Auth Conversions API
+  version: v2
+  description: 'Public-facing Publisher API. Bearer JWT auth (2 hours TTL). Throttle: 60 requests / minute per account.'
+  license:
+    name: Proprietary — Involve Asia
+    url: https://involve.asia/
+servers:
+- url: https://api.involve.asia/api
+security:
+- bearerAuth: []
+tags:
+- name: Conversions
+paths:
+  /conversions/all:
+    post:
+      operationId: conversionsAll
+      summary: All conversions
+      description: Paginated dump of every conversion attributed to your account. Useful for cold syncs; for incrementals use /conversions/range or /conversions/data-range.
+      tags:
+      - Conversions
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer {token}
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: Page number (default 1).
+                limit:
+                  type: integer
+                  description: Page size, default 100, max 100.
+                filters[conversion_id]:
+                  type: string
+                  description: Pipe-separated list, e.g. `899191|7008168`.
+                filters[offer_id]:
+                  type: integer
+                  description: Restrict to a single offer.
+                filters[offer_name]:
+                  type: string
+                  description: Substring match on offer name.
+                filters[conversion_status]:
+                  type: string
+                  description: 'Pipe-separated: `pending|approved|rejected`.'
+                filters[preferred_currency]:
+                  type: string
+                  description: ISO 4217 (`USD` or `MYR`). Defaults to the conversion's local currency.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          description: Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).
+        '429':
+          description: Rate limit exceeded. Back off 250 → 500 → 1000 ms.
+        '500':
+          description: Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.
+  /conversions/range:
+    post:
+      operationId: conversionsRange
+      summary: Conversions by range
+      description: Pull conversions whose conversion datetime falls within a date range. Exclude today unless it's the 1st of the month — partial data trickles in for ~24 hours after the click.
+      tags:
+      - Conversions
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer {token}
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  description: Inclusive start, `YYYY-MM-DD`.
+                end_date:
+                  type: string
+                  description: Inclusive end, `YYYY-MM-DD`.
+                page:
+                  type: integer
+                  description: Page number (default 1).
+                limit:
+                  type: integer
+                  description: Page size, default 100, max 100.
+                filters[conversion_id]:
+                  type: string
+                  description: Pipe-separated list of conversion IDs.
+                filters[offer_id]:
+                  type: integer
+                  description: Restrict to a single offer.
+                filters[conversion_status]:
+                  type: string
+                  description: 'Pipe-separated: `pending|approved|rejected`.'
+                filters[preferred_currency]:
+                  type: string
+                  description: '`USD` or `MYR`. Defaults to local currency.'
+              required:
+              - start_date
+              - end_date
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          description: Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).
+        '429':
+          description: Rate limit exceeded. Back off 250 → 500 → 1000 ms.
+        '500':
+          description: Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.
+  /conversions/data-range:
+    post:
+      operationId: conversionsDataRange
+      summary: Conversions by date+time range
+      description: Same shape as /conversions/range, but accepts second-precision timestamps. Use this when you need sub-day windows (e.g. an hourly sync that overlaps).
+      tags:
+      - Conversions
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer {token}
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  description: Inclusive start, `YYYY-MM-DD HH:MM:SS`.
+                end_date:
+                  type: string
+                  description: Inclusive end, `YYYY-MM-DD HH:MM:SS`.
+                page:
+                  type: integer
+                  description: Page number (default 1).
+                limit:
+                  type: integer
+                  description: Page size, default 100, max 100.
+                filters[conversion_id]:
+                  type: string
+                  description: Pipe-separated list of conversion IDs.
+                filters[offer_id]:
+                  type: integer
+                  description: Restrict to a single offer.
+                filters[conversion_status]:
+                  type: string
+                  description: Pipe-separated statuses.
+                filters[preferred_currency]:
+                  type: string
+                  description: '`USD` or `MYR`.'
+              required:
+              - start_date
+              - end_date
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          description: Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).
+        '429':
+          description: Rate limit exceeded. Back off 250 → 500 → 1000 ms.
+        '500':
+          description: Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.
+components:
+  schemas:
+    ResponseEnvelope:
+      type: object
+      required:
+      - status
+      - data
+      properties:
+        status:
+          type: string
+          description: '`success` or `error`.'
+          examples:
+          - success
+        message:
+          type: string
+          description: Human-readable status message.
+        data:
+          description: 'Endpoint-specific payload. Paginated list endpoints wrap a `{ page, limit, count, nextPage, data: [...] }` object here; single-record endpoints place the record directly.'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

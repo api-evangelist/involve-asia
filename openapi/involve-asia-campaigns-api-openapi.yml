@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: Involve Asia Publisher Auth Campaigns API
+  version: v2
+  description: 'Public-facing Publisher API. Bearer JWT auth (2 hours TTL). Throttle: 60 requests / minute per account.'
+  license:
+    name: Proprietary — Involve Asia
+    url: https://involve.asia/
+servers:
+- url: https://api.involve.asia/api
+security:
+- bearerAuth: []
+tags:
+- name: Campaigns
+paths:
+  /campaigns/all:
+    post:
+      operationId: campaignsAll
+      summary: List campaigns
+      description: Campaign banners + landing pages your account is allowed to promote. Useful for surfacing seasonal vouchers and pre-built creatives.
+      tags:
+      - Campaigns
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer {token}
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: Page number (default 1).
+                limit:
+                  type: integer
+                  description: Page size, default 100, max 100.
+                filters[campaign_banner_id]:
+                  type: string
+                  description: Pipe-separated campaign banner IDs.
+                filters[offer_id]:
+                  type: string
+                  description: Pipe-separated offer IDs.
+                filters[offer_name]:
+                  type: string
+                  description: Substring match on offer name.
+                filters[start_date]:
+                  type: string
+                  description: '`YYYY-MM-DD` — campaign-start window lower bound.'
+                filters[end_date]:
+                  type: string
+                  description: '`YYYY-MM-DD` — campaign-end window upper bound.'
+                filters[country]:
+                  type: string
+                  description: Pipe-separated country names (English).
+                filters[category]:
+                  type: string
+                  description: Pipe-separated category names.
+                filters[coupons_only]:
+                  type: string
+                  description: '`true` to limit to campaigns with a `voucher_code`.'
+                filters[with_banner]:
+                  type: string
+                  description: '`true` to limit to campaigns that include a banner image.'
+                filters[banner_size]:
+                  type: string
+                  description: 'Pipe-separated: `300x250|728x90`.'
+                filters[commission_tracking]:
+                  type: string
+                  description: '`manual` or `real-time`.'
+                filters[device_type]:
+                  type: string
+                  description: 'Pipe-separated: `desktop|mobile|ios|android`.'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          description: Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).
+        '429':
+          description: Rate limit exceeded. Back off 250 → 500 → 1000 ms.
+        '500':
+          description: Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.
+components:
+  schemas:
+    ResponseEnvelope:
+      type: object
+      required:
+      - status
+      - data
+      properties:
+        status:
+          type: string
+          description: '`success` or `error`.'
+          examples:
+          - success
+        message:
+          type: string
+          description: Human-readable status message.
+        data:
+          description: 'Endpoint-specific payload. Paginated list endpoints wrap a `{ page, limit, count, nextPage, data: [...] }` object here; single-record endpoints place the record directly.'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
