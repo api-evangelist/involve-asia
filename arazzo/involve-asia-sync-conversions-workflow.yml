@@ -1,0 +1,81 @@
+arazzo: 1.0.1
+info:
+  title: Involve Asia Sync Conversions
+  summary: Authenticate and pull attributed conversions for a date range.
+  description: >-
+    The reporting/reconciliation flow: exchange key + secret for a bearer token,
+    then pull conversions whose datetime falls within a date range, filtered by
+    status. Every step spells out its form-encoded request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: publisherApi
+  url: ../openapi/involve-asia-publisher-openapi.yml
+  type: openapi
+workflows:
+- workflowId: sync-conversions
+  summary: Authenticate then pull conversions for a date range.
+  description: >-
+    Authenticates, then retrieves the first page of conversions in the given
+    date window filtered by status. Paginate by repeating with an incremented
+    page while page * limit < count.
+  inputs:
+    type: object
+    required:
+    - key
+    - secret
+    - startDate
+    - endDate
+    properties:
+      key:
+        type: string
+        description: Your Involve Asia API key.
+      secret:
+        type: string
+        description: Your Involve Asia API secret.
+      startDate:
+        type: string
+        description: Inclusive start date, YYYY-MM-DD.
+      endDate:
+        type: string
+        description: Inclusive end date, YYYY-MM-DD.
+      status:
+        type: string
+        description: Optional pipe-separated conversion_status filter (pending|approved|rejected).
+  steps:
+  - stepId: authenticate
+    description: Exchange key + secret for a bearer token.
+    operationId: authenticate
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        key: $inputs.key
+        secret: $inputs.secret
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      token: $response.body#/data/token
+  - stepId: pullConversions
+    description: Pull the first page of conversions in the date range.
+    operationId: conversionsRange
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.token
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        start_date: $inputs.startDate
+        end_date: $inputs.endDate
+        page: 1
+        limit: 100
+        "filters[conversion_status]": $inputs.status
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      count: $response.body#/data/count
+      nextPage: $response.body#/data/nextPage
+      conversions: $response.body#/data/data
+  outputs:
+    count: $steps.pullConversions.outputs.count
+    conversions: $steps.pullConversions.outputs.conversions

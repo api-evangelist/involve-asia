@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.involve.asia/docs/#changelog
+scheme: dated
+current_version: v2
+docs: https://api.involve.asia/docs/#changelog
+entries:
+  - date: '2026-05-28'
+    tag: release
+    title: New documentation site, redesigned for humans and AI
+    breaking: false
+    highlights:
+      - Faster searchable three-pane docs at /docs/ (Cmd-K endpoint jump).
+      - Every endpoint now ships machine-readable artifacts — a Claude Skill (skill.md), an llms.txt index, an OpenAPI 3.1 spec, and a Postman v2.1 collection.
+  - date: '2025-06-04'
+    tag: fix
+    title: Lazada deeplink tracking
+    breaking: false
+    highlights:
+      - /deeplink/generate for Lazada offers now bypasses the s.laz.com intermediate redirect, restoring click attribution.
+  - date: '2024-10-01'
+    tag: feature
+    title: New offer filters
+    breaking: false
+    highlights:
+      - Added filters[application_status] and filters[offer_status] on /offers/all and /offers/last-updated-range (filter by approval state and active/paused).
+  - date: '2024-06-26'
+    tag: feature
+    title: /offers/last-updated-range
+    breaking: false
+    highlights:
+      - New endpoint to pull offers whose datetime_updated falls within a window; use for delta sync instead of polling /offers/all.

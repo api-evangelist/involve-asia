@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  involve-asia-publisher-api.md is the provider's own published Claude Skill
+  (https://api.involve.asia/docs/skill.md), saved verbatim. The two flow skills
+  are API-Evangelist-generated, grounded in real operationIds from
+  openapi/involve-asia-publisher-openapi.yml.
+skills:
+  - file: involve-asia-publisher-api.md
+    name: Involve Asia Publisher API
+    api: openapi/involve-asia-publisher-openapi.yml
+    method: searched
+    operations: [authenticate, conversionsAll, conversionsRange, conversionsDataRange, offersAll, offersLastUpdatedRange, campaignsAll, deeplink, shopeeXtra]
+  - file: involve-asia-generate-deeplinks.md
+    name: Generate Involve Asia affiliate deeplinks
+    api: openapi/involve-asia-publisher-openapi.yml
+    method: generated
+    operations: [authenticate, offersAll, deeplink]
+  - file: involve-asia-sync-conversions.md
+    name: Sync Involve Asia conversions
+    api: openapi/involve-asia-publisher-openapi.yml
+    method: generated
+    operations: [authenticate, conversionsRange, conversionsDataRange]

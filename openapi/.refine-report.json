@@ -1,0 +1,24 @@
+{
+  "provider": "involve-asia",
+  "sources": [
+    "involve-asia-auth-api-openapi.yml",
+    "involve-asia-campaigns-api-openapi.yml",
+    "involve-asia-conversions-api-openapi.yml",
+    "involve-asia-deeplink-api-openapi.yml",
+    "involve-asia-offers-api-openapi.yml",
+    "involve-asia-shopee-api-openapi.yml"
+  ],
+  "outputs": [
+    "involve-asia-auth-api-openapi.yml",
+    "involve-asia-campaigns-api-openapi.yml",
+    "involve-asia-conversions-api-openapi.yml",
+    "involve-asia-deeplink-api-openapi.yml",
+    "involve-asia-offers-api-openapi.yml",
+    "involve-asia-shopee-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

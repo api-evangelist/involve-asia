@@ -1,0 +1,57 @@
+# Involve Asia Publisher API
+
+> Public REST API for affiliate publishers on the Involve Asia
+> network. Bearer-JWT auth (2 hours TTL); 60 requests / minute per
+> account; 1,000 unique tracking links / rolling 30-day window / account (deeplinks). Pull conversions and
+> offers, generate trackable affiliate links. Base URL: `https://api.involve.asia/api`
+
+## Operational facts
+
+- **Base URL**: `https://api.involve.asia/api` (no `/v1/` in the public URL).
+- **Auth**: `POST /authenticate` with `key` + `secret` (form-urlencoded)
+  returns `{data: {token}}`. Cache ~110 min; re-authenticate on 401.
+- **Envelope**: every response is `{status, message, data}`. Paginated
+  lists wrap `{page, limit, count, nextPage, data: [...]}` inside `data`.
+- **Rate limits**: 60 requests / minute on all endpoints; additionally
+  1,000 unique tracking links / rolling 30-day window / account on `/deeplink/generate`. On 429, back off
+  250 → 500 → 1000 ms.
+- **Sub-IDs**: `/deeplink/generate` accepts `aff_sub` (sub #1, no number
+  suffix), `aff_sub2`..`aff_sub5`. All surface on conversion records as
+  `aff_sub1`..`aff_sub5`. `aff_sub6+` are silently ignored.
+- **Data lag**: conversion data settles ~24h after the event; exclude
+  today from rollups unless you specifically want the partial day.
+
+## Endpoints
+
+Each link returns the endpoint's full reference (params, sample request,
+sample response) as Markdown.
+
+- [POST /authenticate](https://api.involve.asia/docs/endpoints/authenticate.md): Exchange your API key and secret for a bearer token. Tokens expire after 2 hours — cache them and refresh proactively (or on 401).
+- [POST /conversions/all](https://api.involve.asia/docs/endpoints/conversions-all.md): Paginated dump of every conversion attributed to your account. Useful for cold syncs; for incrementals use /conversions/range or /conversions/data-range.
+- [POST /conversions/range](https://api.involve.asia/docs/endpoints/conversions-range.md): Pull conversions whose conversion datetime falls within a date range. Exclude today unless it's the 1st of the month — partial data trickles in for ~24 hours after the click.
+- [POST /conversions/data-range](https://api.involve.asia/docs/endpoints/conversions-data-range.md): Same shape as /conversions/range, but accepts second-precision timestamps. Use this when you need sub-day windows (e.g. an hourly sync that overlaps).
+- [POST /offers/all](https://api.involve.asia/docs/endpoints/offers-all.md): Paginated list of offers you have access to. Filter by country, category, application status, and offer status.
+- [POST /offers/last-updated-range](https://api.involve.asia/docs/endpoints/offers-last-updated-range.md): Pull only offers whose `datetime_updated` falls within a window. Cheaper than /offers/all for delta sync.
+- [POST /campaigns/all](https://api.involve.asia/docs/endpoints/campaigns-all.md): Campaign banners + landing pages your account is allowed to promote. Useful for surfacing seasonal vouchers and pre-built creatives.
+- [POST /deeplink/generate](https://api.involve.asia/docs/endpoints/deeplink-generate.md): Convert a destination URL into a trackable affiliate link. Capped at 1,000 unique links per rolling 30-day window per account.
+- [POST /shopeextra/all](https://api.involve.asia/docs/endpoints/shopeextra-all.md): Boosted-payout brands enrolled in Shopee Commission Xtra. Refresh nightly. Page size cap is 200 (higher than other endpoints).
+
+## Artifacts
+
+- [Anthropic Skill (skill.md)](https://api.involve.asia/skill.md): self-contained — auth flow,
+  endpoint catalogue, gotchas, error recipes. Drop into Claude.ai Projects
+  or load via the Skills API.
+- [OpenAPI 3.1 spec](https://api.involve.asia/docs/openapi.yaml): for code generation and import
+  into Postman/Insomnia/Stoplight.
+- [Postman Collection v2.1](https://api.involve.asia/docs/collection.json): the Authenticate
+  request auto-populates a `{{token}}` collection variable; subsequent
+  requests reuse it.
+
+## Optional
+
+- [Full HTML docs](https://api.involve.asia/docs/): rendered three-pane documentation site with
+  ⌘K search and per-endpoint "Copy as Markdown" buttons.
+- [Changelog](https://api.involve.asia/docs/#changelog): version history.
+- [Support — file a ticket](https://helpcentre.involve.asia/portal/en/newticket):
+  include the first 6 chars of your `key` plus the `request_id` from
+  any response header.

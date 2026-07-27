@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Involve Asia Publisher API
+  version: 1.0.0
+extends: openapi/involve-asia-publisher-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-rating: 4
+      x-apievangelist-notes: >-
+        Publisher affiliate API for the Involve Asia network. Well-documented
+        with first-party OpenAPI 3.1, a Claude Skill, llms.txt, and a Postman
+        collection. All operations are POST with form-urlencoded bodies;
+        bearer-JWT auth (2h TTL); page-number pagination; 60 req/min throttle.
+      x-apievangelist-conventions: conventions/involve-asia-conventions.yml
+      x-apievangelist-errors: errors/involve-asia-problem-types.yml
+      x-apievangelist-data-model: data-model/involve-asia-data-model.yml
+  - target: $.info
+    update:
+      x-agentic-access-profile: agentic-access/involve-asia-agentic-access.yml
+  - target: $.paths['/deeplink/generate'].post
+    update:
+      x-apievangelist-warning: >-
+        Returns HTTP 500 (not 4xx) for invalid offer_id or non-whitelisted
+        destination URLs — treat these 500s as PERMANENT client errors and do
+        not retry. Counts against the 1,000-link rolling 30-day cap.
+  - target: $.paths['/authenticate'].post
+    update:
+      x-apievangelist-note: >-
+        Cache the returned token ~110 minutes (under the 2h TTL). On 401,
+        re-authenticate once and retry the original request.

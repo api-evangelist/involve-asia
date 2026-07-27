@@ -1,0 +1,22 @@
+generated: '2026-07-19'
+method: searched
+source: Live probes of /.well-known/* on the API and website hosts.
+note: >-
+  No /.well-known discovery documents were served. The API host returned 502
+  for /.well-known/* paths and the marketing host returned 403 (WAF). Recorded
+  for auditability; no raw files were saved because nothing returned 200.
+hosts:
+  - host: https://api.involve.asia
+    documents:
+      - {path: /.well-known/security.txt, status: 502}
+      - {path: /.well-known/openid-configuration, status: 502}
+      - {path: /.well-known/oauth-authorization-server, status: 502}
+      - {path: /.well-known/api-catalog, status: 502}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://involve.asia
+    documents:
+      - {path: /.well-known/security.txt, status: 403}
+      - {path: /.well-known/openid-configuration, status: 403}
+      - {path: /.well-known/oauth-authorization-server, status: 403}
+      - {path: /.well-known/api-catalog, status: 403}
+      - {path: /.well-known/ai-plugin.json, status: 403}

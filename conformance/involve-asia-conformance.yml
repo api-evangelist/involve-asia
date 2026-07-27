@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/involve-asia-publisher-openapi.yml + https://api.involve.asia/docs/
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 securityScheme; auth is a bespoke key/secret -> JWT exchange.
+  - id: oidc
+    conforms: false
+  - id: bearer-jwt
+    conforms: true
+    evidence: securityScheme bearerAuth type http scheme bearer bearerFormat JWT; 2h TTL.
+  - id: openapi-3.1
+    conforms: true
+    evidence: Provider publishes an OpenAPI 3.1.0 spec at https://api.involve.asia/docs/openapi.yaml.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a flat {status,message,data} envelope, not application/problem+json.
+  - id: json-api
+    conforms: false
+  - id: pagination
+    conforms: true
+    evidence: Consistent page/limit/count/nextPage page-number pagination across all list endpoints.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key mechanism documented.
+  - id: rate-limiting
+    conforms: true
+    evidence: Documented 60 req/min/account throttle signaled via HTTP 429.

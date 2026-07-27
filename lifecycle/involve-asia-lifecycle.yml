@@ -1,0 +1,26 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://api.involve.asia/docs/ (changelog + OpenAPI) and
+  https://involve.asia/terms-conditions/
+versioning:
+  scheme: uri-path
+  current: v2
+  docs: https://api.involve.asia/docs/
+  note: >-
+    The OpenAPI declares version v2; the public base URL is
+    https://api.involve.asia/api (no /v2/ segment appears in the path).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No formal deprecation/sunset policy is published. Historical changes have
+    been additive (new filters, new endpoints) rather than removals — see the
+    changelog artifact.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+changelog: changelog/involve-asia-changelog.yml
+changelog_docs: https://api.involve.asia/docs/#changelog
+deprecated_operations: []

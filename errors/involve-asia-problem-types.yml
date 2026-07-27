@@ -1,0 +1,67 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  Derived from the 401/429/500 responses in
+  openapi/involve-asia-publisher-openapi.yml, enriched from the "Error model"
+  section of the provider skill (https://api.involve.asia/docs/skill.md).
+format: custom
+envelope:
+  shape: '{ status, message, data }'
+  error_data: 'data is an empty array [] on errors — NOT a field-level errors object.'
+  note: >-
+    HTTP status is not always semantically correct; always inspect `message`
+    together with the status code. Field-level error objects (data.errors) are
+    not emitted by any endpoint today — parse `message` directly.
+
+problems:
+  - status: 401
+    class: auth-token
+    title: Bad or expired token
+    message_example: '{"message":"Wrong number of segments","status_code":401}'
+    envelope: >-
+      May NOT follow the standard envelope — the JWT layer can return
+      {message, status_code} or {error:"Unauthenticated."}.
+    remediation: Re-authenticate once, then retry the original request.
+    retriable: once-after-reauth
+  - status: 401
+    class: credentials
+    title: Invalid credentials
+    source_operation: openapi/involve-asia-publisher-openapi.yml#authenticate
+    message_example: '{"status":"error","message":"Invalid Credentials","data":[]}'
+    remediation: Wrong key/secret. Do NOT retry; fix the credentials.
+    retriable: false
+  - status: 401
+    class: validation
+    title: Missing or incorrect arguments
+    message_example: '{"status":"error","message":"Incorrect arguments...","data":[]}'
+    note: >-
+      Validation errors (e.g. /conversions/range without start_date) are
+      returned as 401 today, not 422.
+    remediation: Fix the request. Do NOT re-authenticate or retry unchanged.
+    retriable: false
+  - status: 429
+    class: rate-limit
+    title: Too Many Requests
+    remediation: >-
+      Genuine throttle (60 req/min/account). Back off 250 -> 500 -> 1000 ms.
+      On /deeplink/generate the message may also cover the rolling 30-day
+      1,000-link cap.
+    retriable: after-backoff
+  - status: 500
+    class: business-rule
+    title: Something went wrong (deeplink)
+    source_operation: openapi/involve-asia-publisher-openapi.yml#deeplink
+    message_example: 'Something went wrong'
+    note: >-
+      On /deeplink/generate a 500 is returned for invalid offer_id,
+      non-whitelisted destination URLs, and other business-rule violations.
+      This is a PERMANENT client error despite the 5xx code.
+    remediation: Fix the input (resolve offer_id first, use a whitelisted URL). Do NOT retry.
+    retriable: false
+  - status: 500
+    class: server
+    title: Server error (other)
+    remediation: >-
+      Only retry an unexpected 5xx if the identical request previously
+      succeeded (true transient).
+    retriable: conditional

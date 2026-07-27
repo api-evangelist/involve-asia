@@ -1,0 +1,33 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  Derived from the response objects and id-reference fields in
+  openapi/involve-asia-publisher-openapi.yml and the sample payloads in the
+  provider skill/docs (https://api.involve.asia/docs/skill.md).
+docs: https://api.involve.asia/docs/
+notation: >-
+  relationships use has_one / has_many / belongs_to with the foreign-key field
+  name; direction is from the entity that owns the reference.
+
+entities:
+  - {name: Offer, id_field: offer_id, domain: catalog, description: A merchant/advertiser program a publisher can promote (CPA/CPS/CPC/CPM), with commission terms, categories, countries, and a base tracking_link.}
+  - {name: Campaign, id_field: campaign_banner_id, domain: catalog, description: A promotable creative for an offer — banner + landing page, often with a voucher_code and start/end dates.}
+  - {name: Conversion, id_field: conversion_id, domain: performance, description: An attributed sale/action against an offer, with sale_amount, payout/base_payout/bonus_payout, currency, status (pending/approved/rejected), and aff_sub1..aff_sub5.}
+  - {name: Deeplink, id_field: tracking_link, domain: tracking, description: A trackable affiliate link generated for an offer + destination URL, carrying up to five sub-IDs.}
+  - {name: ShopeeXtraShop, id_field: shop_id, domain: catalog, description: A boosted-payout Shopee shop enrolled in Shopee Commission Xtra, with commission_rate and a promotion period.}
+  - {name: Merchant, id_field: merchant_id, domain: catalog, description: The advertiser behind an offer; surfaced on campaign and deeplink records.}
+
+relationships:
+  - {from: Campaign, to: Offer, kind: belongs_to, via: offer_id}
+  - {from: Campaign, to: Merchant, kind: belongs_to, via: merchant_id}
+  - {from: Conversion, to: Offer, kind: belongs_to, via: offer_id}
+  - {from: Deeplink, to: Offer, kind: belongs_to, via: offer_id}
+  - {from: Deeplink, to: Merchant, kind: belongs_to, via: merchant_id}
+  - {from: Offer, to: Campaign, kind: has_many, via: offer_id}
+  - {from: Offer, to: Conversion, kind: has_many, via: offer_id}
+  - {from: Deeplink, to: Conversion, kind: has_many, via: 'aff_sub1..aff_sub5 (sub-ID attribution, not a hard foreign key)'}
+
+notes:
+  - Conversions carry no country field — scope to a market via currency or an offer-name substring.
+  - Sub-ID request naming is asymmetric (aff_sub, aff_sub2..aff_sub5) but all surface as aff_sub1..aff_sub5 on the Conversion.
+  - ShopeeXtraShop is a Shopee-specific overlay on the Offer named "Shopee <country>".

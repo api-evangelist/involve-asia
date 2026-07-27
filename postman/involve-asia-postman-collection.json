@@ -1,0 +1,798 @@
+{
+  "info": {
+    "name": "Involve Asia Publisher API",
+    "description": "Generated from api-data.js by tools/docs/build-ai-artifacts.js. Do not edit by hand — your changes will be overwritten on the next docs build.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Authenticate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "key",
+                  "value": "",
+                  "description": "Your API key. Manage at https://app.involve.asia/v2/publisher/api-keys (Tools → API).",
+                  "type": "text"
+                },
+                {
+                  "key": "secret",
+                  "value": "",
+                  "description": "Your API secret. Treat like a password.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authenticate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authenticate"
+              ]
+            },
+            "description": "Exchange your API key and secret for a bearer token. Tokens expire after 2 hours — cache them and refresh proactively (or on 401)."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "pm.collectionVariables.set(\"token\", pm.response.json().data.token);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Conversions",
+      "item": [
+        {
+          "name": "All conversions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "page",
+                  "value": "",
+                  "description": "Page number (default 1).",
+                  "type": "text"
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "description": "Page size, default 100, max 100.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[conversion_id]",
+                  "value": "",
+                  "description": "Pipe-separated list, e.g. `899191|7008168`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_id]",
+                  "value": "",
+                  "description": "Restrict to a single offer.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_name]",
+                  "value": "",
+                  "description": "Substring match on offer name.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[conversion_status]",
+                  "value": "",
+                  "description": "Pipe-separated: `pending|approved|rejected`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[preferred_currency]",
+                  "value": "",
+                  "description": "ISO 4217 (`USD` or `MYR`). Defaults to the conversion's local currency.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/conversions/all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "conversions",
+                "all"
+              ]
+            },
+            "description": "Paginated dump of every conversion attributed to your account. Useful for cold syncs; for incrementals use /conversions/range or /conversions/data-range."
+          },
+          "response": []
+        },
+        {
+          "name": "Conversions by range",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "start_date",
+                  "value": "",
+                  "description": "Inclusive start, `YYYY-MM-DD`.",
+                  "type": "text"
+                },
+                {
+                  "key": "end_date",
+                  "value": "",
+                  "description": "Inclusive end, `YYYY-MM-DD`.",
+                  "type": "text"
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "description": "Page number (default 1).",
+                  "type": "text"
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "description": "Page size, default 100, max 100.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[conversion_id]",
+                  "value": "",
+                  "description": "Pipe-separated list of conversion IDs.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_id]",
+                  "value": "",
+                  "description": "Restrict to a single offer.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[conversion_status]",
+                  "value": "",
+                  "description": "Pipe-separated: `pending|approved|rejected`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[preferred_currency]",
+                  "value": "",
+                  "description": "`USD` or `MYR`. Defaults to local currency.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/conversions/range",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "conversions",
+                "range"
+              ]
+            },
+            "description": "Pull conversions whose conversion datetime falls within a date range. Exclude today unless it's the 1st of the month — partial data trickles in for ~24 hours after the click."
+          },
+          "response": []
+        },
+        {
+          "name": "Conversions by date+time range",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "start_date",
+                  "value": "",
+                  "description": "Inclusive start, `YYYY-MM-DD HH:MM:SS`.",
+                  "type": "text"
+                },
+                {
+                  "key": "end_date",
+                  "value": "",
+                  "description": "Inclusive end, `YYYY-MM-DD HH:MM:SS`.",
+                  "type": "text"
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "description": "Page number (default 1).",
+                  "type": "text"
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "description": "Page size, default 100, max 100.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[conversion_id]",
+                  "value": "",
+                  "description": "Pipe-separated list of conversion IDs.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_id]",
+                  "value": "",
+                  "description": "Restrict to a single offer.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[conversion_status]",
+                  "value": "",
+                  "description": "Pipe-separated statuses.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[preferred_currency]",
+                  "value": "",
+                  "description": "`USD` or `MYR`.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/conversions/data-range",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "conversions",
+                "data-range"
+              ]
+            },
+            "description": "Same shape as /conversions/range, but accepts second-precision timestamps. Use this when you need sub-day windows (e.g. an hourly sync that overlaps)."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Offers",
+      "item": [
+        {
+          "name": "All offers",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "page",
+                  "value": "",
+                  "description": "Page number (default 1).",
+                  "type": "text"
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "description": "Page size, default 100, max 100.",
+                  "type": "text"
+                },
+                {
+                  "key": "sort_by",
+                  "value": "",
+                  "description": "`relevance` (default) · `show_latest_first` · `show_oldest_first` · `a_to_z` · `z_to_a` · `highest_commision_percent` · `lowest_commision_percent` · `highest_flat_payout` · `lowest_flat_payout`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_id]",
+                  "value": "",
+                  "description": "Pipe-separated list, e.g. `25|5126`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_name]",
+                  "value": "",
+                  "description": "Substring match on offer name.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_country]",
+                  "value": "",
+                  "description": "Pipe-separated country names (English), e.g. `Malaysia|Indonesia`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_type]",
+                  "value": "",
+                  "description": "Pipe-separated payout types: `cpa|cps|cpa_both|cpc|cpm`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[categories]",
+                  "value": "",
+                  "description": "Pipe-separated, e.g. `Electronics|Fashion|Finance|Health & Beauty|Lifestyle|Marketplace|Other|Services|Travel`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[application_status]",
+                  "value": "",
+                  "description": "Pipe-separated: `Approved|Blocked|Pending|Rejected`. Added 2024-10-01.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_status]",
+                  "value": "",
+                  "description": "Pipe-separated: `Active|Paused`. Added 2024-10-01.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/offers/all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "offers",
+                "all"
+              ]
+            },
+            "description": "Paginated list of offers you have access to. Filter by country, category, application status, and offer status."
+          },
+          "response": []
+        },
+        {
+          "name": "Last-updated offers",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "start_date",
+                  "value": "",
+                  "description": "Inclusive start, `YYYY-MM-DD HH:MM:SS`.",
+                  "type": "text"
+                },
+                {
+                  "key": "end_date",
+                  "value": "",
+                  "description": "Inclusive end, `YYYY-MM-DD HH:MM:SS`.",
+                  "type": "text"
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "description": "Page number (default 1).",
+                  "type": "text"
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "description": "Page size, default 100, max 100.",
+                  "type": "text"
+                },
+                {
+                  "key": "sort_by",
+                  "value": "",
+                  "description": "Same options as /offers/all.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_country]",
+                  "value": "",
+                  "description": "Pipe-separated country names.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[categories]",
+                  "value": "",
+                  "description": "Pipe-separated categories.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[application_status]",
+                  "value": "",
+                  "description": "Pipe-separated: `Approved|Blocked|Pending|Rejected`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_status]",
+                  "value": "",
+                  "description": "Pipe-separated: `Active|Paused`.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/offers/last-updated-range",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "offers",
+                "last-updated-range"
+              ]
+            },
+            "description": "Pull only offers whose `datetime_updated` falls within a window. Cheaper than /offers/all for delta sync."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Campaigns",
+      "item": [
+        {
+          "name": "List campaigns",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "page",
+                  "value": "",
+                  "description": "Page number (default 1).",
+                  "type": "text"
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "description": "Page size, default 100, max 100.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[campaign_banner_id]",
+                  "value": "",
+                  "description": "Pipe-separated campaign banner IDs.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_id]",
+                  "value": "",
+                  "description": "Pipe-separated offer IDs.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[offer_name]",
+                  "value": "",
+                  "description": "Substring match on offer name.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[start_date]",
+                  "value": "",
+                  "description": "`YYYY-MM-DD` — campaign-start window lower bound.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[end_date]",
+                  "value": "",
+                  "description": "`YYYY-MM-DD` — campaign-end window upper bound.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[country]",
+                  "value": "",
+                  "description": "Pipe-separated country names (English).",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[category]",
+                  "value": "",
+                  "description": "Pipe-separated category names.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[coupons_only]",
+                  "value": "",
+                  "description": "`true` to limit to campaigns with a `voucher_code`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[with_banner]",
+                  "value": "",
+                  "description": "`true` to limit to campaigns that include a banner image.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[banner_size]",
+                  "value": "",
+                  "description": "Pipe-separated: `300x250|728x90`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[commission_tracking]",
+                  "value": "",
+                  "description": "`manual` or `real-time`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[device_type]",
+                  "value": "",
+                  "description": "Pipe-separated: `desktop|mobile|ios|android`.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/campaigns/all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "campaigns",
+                "all"
+              ]
+            },
+            "description": "Campaign banners + landing pages your account is allowed to promote. Useful for surfacing seasonal vouchers and pre-built creatives."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Deeplink",
+      "item": [
+        {
+          "name": "Generate deeplink",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "offer_id",
+                  "value": "",
+                  "description": "Offer ID from /offers/all. **Resolve first** — an unknown offer_id returns HTTP 500 with a generic 'Something went wrong' message (see Error model).",
+                  "type": "text"
+                },
+                {
+                  "key": "url",
+                  "value": "",
+                  "description": "Destination URL — must belong to one of the offer's whitelisted domains. A non-whitelisted host returns the same HTTP 500.",
+                  "type": "text"
+                },
+                {
+                  "key": "aff_sub",
+                  "value": "",
+                  "description": "Sub ID 1 — note the param name has no number. Surfaces on the conversion as `aff_sub1`. Up to 255 chars.",
+                  "type": "text"
+                },
+                {
+                  "key": "aff_sub2",
+                  "value": "",
+                  "description": "Sub ID 2.",
+                  "type": "text"
+                },
+                {
+                  "key": "aff_sub3",
+                  "value": "",
+                  "description": "Sub ID 3.",
+                  "type": "text"
+                },
+                {
+                  "key": "aff_sub4",
+                  "value": "",
+                  "description": "Sub ID 4.",
+                  "type": "text"
+                },
+                {
+                  "key": "aff_sub5",
+                  "value": "",
+                  "description": "Sub ID 5.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/deeplink/generate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "deeplink",
+                "generate"
+              ]
+            },
+            "description": "Convert a destination URL into a trackable affiliate link. Capped at 1,000 unique links per rolling 30-day window per account."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Shopee",
+      "item": [
+        {
+          "name": "Shopee Xtra brands",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "page",
+                  "value": "",
+                  "description": "Page number (default 1).",
+                  "type": "text"
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "description": "Page size, default 200, **max 200**.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[country]",
+                  "value": "",
+                  "description": "One of `Malaysia`, `Singapore`, `Indonesia`, `Thailand`, `Vietnam`, `Philippines`, `Taiwan`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[shop_name]",
+                  "value": "",
+                  "description": "Substring match on shop name (or a Shopee shop URL — the shop_id is parsed out).",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[shop_type]",
+                  "value": "",
+                  "description": "`mall` or `preferred`.",
+                  "type": "text"
+                },
+                {
+                  "key": "filters[sort_type]",
+                  "value": "",
+                  "description": "`latest_updated`, `high_commission`, or default (shop_name ASC).",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shopeextra/all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shopeextra",
+                "all"
+              ]
+            },
+            "description": "Boosted-payout brands enrolled in Shopee Commission Xtra. Refresh nightly. Page size cap is 200 (higher than other endpoints)."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.involve.asia/api",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

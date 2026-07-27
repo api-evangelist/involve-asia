@@ -1,0 +1,12 @@
+generated: '2026-07-19'
+method: derived
+source: Native Arazzo workflows over openapi/involve-asia-publisher-openapi.yml.
+workflows:
+  - file: involve-asia-generate-deeplink-workflow.yml
+    workflowId: generate-deeplink
+    title: Involve Asia Generate Deeplink
+    summary: Authenticate, resolve an offer, and mint a trackable affiliate deeplink.
+  - file: involve-asia-sync-conversions-workflow.yml
+    workflowId: sync-conversions
+    title: Involve Asia Sync Conversions
+    summary: Authenticate and pull attributed conversions for a date range.

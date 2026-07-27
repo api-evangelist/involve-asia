@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: Involve Asia Generate Deeplink
+  summary: Authenticate, resolve an offer, and mint a trackable affiliate deeplink.
+  description: >-
+    The core publisher flow: exchange key + secret for a bearer token, find the
+    offer whose whitelisted domain matches a destination URL, then generate a
+    trackable affiliate link tagged with a sub-ID. Every step spells out its
+    form-encoded request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: publisherApi
+  url: ../openapi/involve-asia-publisher-openapi.yml
+  type: openapi
+workflows:
+- workflowId: generate-deeplink
+  summary: Authenticate then generate a trackable affiliate deeplink for a URL.
+  description: >-
+    Authenticates, lists offers to resolve an offer_id for the destination
+    domain, then generates a deeplink tagged with a sub-ID.
+  inputs:
+    type: object
+    required:
+    - key
+    - secret
+    - url
+    properties:
+      key:
+        type: string
+        description: Your Involve Asia API key.
+      secret:
+        type: string
+        description: Your Involve Asia API secret.
+      url:
+        type: string
+        description: Destination URL (must belong to one of the offer's whitelisted domains).
+      offerName:
+        type: string
+        description: Substring to locate the offer by name.
+      affSub:
+        type: string
+        description: Sub-ID #1 tag (sent as aff_sub, surfaces as aff_sub1).
+  steps:
+  - stepId: authenticate
+    description: Exchange key + secret for a bearer token.
+    operationId: authenticate
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        key: $inputs.key
+        secret: $inputs.secret
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      token: $response.body#/data/token
+  - stepId: resolveOffer
+    description: List offers filtered by name to resolve the offer_id.
+    operationId: offersAll
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.token
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        limit: 100
+        "filters[offer_name]": $inputs.offerName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      offerId: $response.body#/data/data/0/offer_id
+  - stepId: generateDeeplink
+    description: Generate a trackable affiliate link for the destination URL.
+    operationId: deeplink
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.token
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        offer_id: $steps.resolveOffer.outputs.offerId
+        url: $inputs.url
+        aff_sub: $inputs.affSub
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trackingLink: $response.body#/data/tracking_link
+  outputs:
+    trackingLink: $steps.generateDeeplink.outputs.trackingLink

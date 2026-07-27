@@ -1,0 +1,102 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://api.involve.asia/docs/ (llms.txt + skill.md + OpenAPI 3.1) — the
+  cross-cutting request/response conventions that apply to every Involve Asia
+  Publisher API endpoint, captured from the provider's own machine-readable
+  docs artifacts.
+description: >-
+  How the Involve Asia Publisher API behaves across every operation:
+  authentication style, request encoding, pagination, the response envelope,
+  rate-limit signaling, sub-ID semantics, data-lag behaviour, and the
+  (non-standard) error shapes the API actually returns.
+
+base_url: https://api.involve.asia/api
+api_style: >-
+  REST over HTTPS. Every endpoint is POST with an
+  application/x-www-form-urlencoded body; responses are JSON. Bracketed
+  filter params (filters[offer_id]) are passed as form fields.
+
+authentication:
+  scheme: Bearer JWT
+  flow: >-
+    POST /authenticate with key + secret (form-urlencoded) returns
+    {data: {token}}. Send Authorization: Bearer <token> on every other call.
+  token_ttl: 2 hours
+  caching: Cache the token ~110 minutes and refresh proactively (or on 401).
+  detail: authentication/involve-asia-authentication.yml
+  docs: https://api.involve.asia/docs/#auth
+
+idempotency:
+  supported: false
+  note: >-
+    The API documents no idempotency-key mechanism. All write-style calls are
+    POST with no client-supplied idempotency header. /deeplink/generate is the
+    only mutating operation; repeated calls with the same inputs may mint
+    additional tracking links and count against the 1,000-link rolling cap.
+
+pagination:
+  style: page-number
+  request_params:
+    page: Page number, default 1.
+    limit: "Page size, default 100, max 100 (Shopee Xtra: default/max 200)."
+  response_fields:
+    page: current page
+    limit: page size
+    count: total records across all pages
+    nextPage: next page number, or null on the last page
+    data: array of records (nested inside the outer data envelope)
+  strategy: Continue while page * limit < count, or until nextPage is null.
+  docs: https://api.involve.asia/docs/#rate-limits
+
+response_envelope:
+  shape: '{ status, message, data }'
+  status_values: [success, error]
+  paginated_data: >-
+    For list endpoints, the outer `data` wraps a
+    { page, limit, count, nextPage, data: [...] } object — note the nested
+    `data` key. Single-record endpoints (deeplink) place the record directly
+    on the outer `data`.
+  detail: errors/involve-asia-problem-types.yml
+
+rate_limiting:
+  limit: 60 requests / minute / account (all endpoints)
+  deeplink_cap: 1,000 unique tracking links / rolling 30-day window / account
+  signal: HTTP 429 on throttle
+  backoff: Exponential ladder 250 -> 500 -> 1000 ms on 429.
+  headers: No documented X-RateLimit-* headers; back off on the 429 status.
+
+sub_ids:
+  count: 5
+  request_naming: >-
+    Asymmetric — sub-ID #1 is sent as `aff_sub` (no number); sub-IDs #2-5 are
+    `aff_sub2`..`aff_sub5`.
+  response_naming: All five surface on the conversion record as aff_sub1..aff_sub5.
+  ignored: aff_sub6 through aff_sub10 are silently ignored.
+
+data_lag:
+  window: ~24 hours
+  guidance: >-
+    Conversion data settles ~24h after the event. Exclude today from rollups
+    unless you specifically want the partial day.
+
+versioning:
+  scheme: uri-path
+  current: v2
+  note: The public base URL is https://api.involve.asia/api (no /v2/ segment in the path).
+  detail: lifecycle/involve-asia-lifecycle.yml
+
+error_handling:
+  envelope: "Errors use a flat `message` string with `data: []` (array, not a field-level errors object)."
+  quirks:
+    - HTTP status is not always semantically correct — inspect message AND status together.
+    - Validation failures (missing required params) are returned as 401 today, not 422.
+    - JWT auth errors may break the standard envelope (e.g. {message, status_code} or {error}).
+    - /deeplink/generate returns HTTP 500 for bad offer_id or non-whitelisted URL — a PERMANENT client error despite the 5xx.
+  detail: errors/involve-asia-problem-types.yml
+
+cross_references:
+  authentication: authentication/involve-asia-authentication.yml
+  errors: errors/involve-asia-problem-types.yml
+  lifecycle: lifecycle/involve-asia-lifecycle.yml
+  data_model: data-model/involve-asia-data-model.yml
