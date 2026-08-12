@@ -159,7 +159,7 @@ common:
 - type: Postman
   url: https://api.involve.asia/docs/collection.json
 - type: OpenAPI
-  url: openapi/involve-asia-publisher-openapi.yml
+  url: openapi/_original/involve-asia-publisher-openapi.yml
 - type: Overlay
   url: overlays/involve-asia-publisher-overlay.yaml
 - type: Authentication
