@@ -34,7 +34,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-13'
 tags:
 - Affiliate Marketing
 - Performance Marketing
@@ -192,13 +192,19 @@ common:
 - type: Arazzo
   name: Involve Asia Sync Conversions
   url: arazzo/involve-asia-sync-conversions-workflow.yml
+- type: RateLimits
+  url: rate-limits/involve-asia-rate-limits.yml
+- type: Webhooks
+  url: asyncapi/involve-asia-webhooks.yml
+- type: Packages
+  url: packages/involve-asia-packages.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 4
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
