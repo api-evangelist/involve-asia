@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Involve Asia Publisher Auth Deeplink API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deeplink",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate deeplink",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.involve.asia/api/deeplink/generate",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "offer_id",
+                  "value": ""
+                },
+                {
+                  "name": "url",
+                  "value": ""
+                },
+                {
+                  "name": "aff_sub",
+                  "value": ""
+                },
+                {
+                  "name": "aff_sub2",
+                  "value": ""
+                },
+                {
+                  "name": "aff_sub3",
+                  "value": ""
+                },
+                {
+                  "name": "aff_sub4",
+                  "value": ""
+                },
+                {
+                  "name": "aff_sub5",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Convert a destination URL into a trackable affiliate link. Capped at 1,000 unique links per rolling 30-day window per account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

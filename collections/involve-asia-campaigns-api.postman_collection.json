@@ -1,0 +1,886 @@
+{
+  "item": [
+    {
+      "id": "8aea9be3-6af0-4d45-97c8-d1492d4afd2b",
+      "name": "Campaigns",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "75ee035a-84ad-44e3-9d59-922fd232d5e3",
+          "name": "List campaigns",
+          "request": {
+            "name": "List campaigns",
+            "description": {
+              "content": "Campaign banners + landing pages your account is allowed to promote. Useful for surfacing seasonal vouchers and pre-built creatives.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number (default 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Page size, default 100, max 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[campaign_banner_id]",
+                  "value": "<string>",
+                  "description": "Pipe-separated campaign banner IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_id]",
+                  "value": "<string>",
+                  "description": "Pipe-separated offer IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_name]",
+                  "value": "<string>",
+                  "description": "Substring match on offer name."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[start_date]",
+                  "value": "<string>",
+                  "description": "`YYYY-MM-DD` — campaign-start window lower bound."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[end_date]",
+                  "value": "<string>",
+                  "description": "`YYYY-MM-DD` — campaign-end window upper bound."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[country]",
+                  "value": "<string>",
+                  "description": "Pipe-separated country names (English)."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[category]",
+                  "value": "<string>",
+                  "description": "Pipe-separated category names."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[coupons_only]",
+                  "value": "<string>",
+                  "description": "`true` to limit to campaigns with a `voucher_code`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[with_banner]",
+                  "value": "<string>",
+                  "description": "`true` to limit to campaigns that include a banner image."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[banner_size]",
+                  "value": "<string>",
+                  "description": "Pipe-separated: `300x250|728x90`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[commission_tracking]",
+                  "value": "<string>",
+                  "description": "`manual` or `real-time`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[device_type]",
+                  "value": "<string>",
+                  "description": "Pipe-separated: `desktop|mobile|ios|android`."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0fa8193b-31d7-4e8b-b8bb-50341bc65cdf",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated campaign banner IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[campaign_banner_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated offer IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`YYYY-MM-DD` — campaign-start window lower bound.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[start_date]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`YYYY-MM-DD` — campaign-end window upper bound.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[end_date]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names (English).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated category names.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[category]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`true` to limit to campaigns with a `voucher_code`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[coupons_only]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`true` to limit to campaigns that include a banner image.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[with_banner]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `300x250|728x90`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[banner_size]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`manual` or `real-time`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[commission_tracking]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `desktop|mobile|ios|android`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[device_type]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e54c3ae-08f0-4757-a66e-dfe289910451",
+              "name": "Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated campaign banner IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[campaign_banner_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated offer IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`YYYY-MM-DD` — campaign-start window lower bound.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[start_date]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`YYYY-MM-DD` — campaign-end window upper bound.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[end_date]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names (English).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated category names.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[category]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`true` to limit to campaigns with a `voucher_code`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[coupons_only]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`true` to limit to campaigns that include a banner image.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[with_banner]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `300x250|728x90`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[banner_size]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`manual` or `real-time`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[commission_tracking]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `desktop|mobile|ios|android`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[device_type]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2c19e17-876b-4731-b8c4-dcb95171a0c3",
+              "name": "Rate limit exceeded. Back off 250 → 500 → 1000 ms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated campaign banner IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[campaign_banner_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated offer IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`YYYY-MM-DD` — campaign-start window lower bound.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[start_date]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`YYYY-MM-DD` — campaign-end window upper bound.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[end_date]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names (English).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated category names.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[category]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`true` to limit to campaigns with a `voucher_code`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[coupons_only]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`true` to limit to campaigns that include a banner image.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[with_banner]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `300x250|728x90`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[banner_size]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`manual` or `real-time`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[commission_tracking]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `desktop|mobile|ios|android`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[device_type]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6b8f4b9-c7e2-4784-8267-11de8bb20cfc",
+              "name": "Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated campaign banner IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[campaign_banner_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated offer IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`YYYY-MM-DD` — campaign-start window lower bound.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[start_date]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`YYYY-MM-DD` — campaign-end window upper bound.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[end_date]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names (English).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated category names.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[category]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`true` to limit to campaigns with a `voucher_code`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[coupons_only]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`true` to limit to campaigns that include a banner image.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[with_banner]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `300x250|728x90`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[banner_size]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`manual` or `real-time`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[commission_tracking]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `desktop|mobile|ios|android`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[device_type]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.involve.asia/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9f21abf8-9c8f-438b-ad8a-df3b637a3661",
+    "name": "Involve Asia Publisher Auth Campaigns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public-facing Publisher API. Bearer JWT auth (2 hours TTL). Throttle: 60 requests / minute per account.",
+      "type": "text/plain"
+    }
+  }
+}

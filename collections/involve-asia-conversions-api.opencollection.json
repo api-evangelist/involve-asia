@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Involve Asia Publisher Auth Conversions API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "All conversions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.involve.asia/api/conversions/all",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "page",
+                  "value": ""
+                },
+                {
+                  "name": "limit",
+                  "value": ""
+                },
+                {
+                  "name": "filters[conversion_id]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_id]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_name]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[conversion_status]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[preferred_currency]",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Paginated dump of every conversion attributed to your account. Useful for cold syncs; for incrementals use /conversions/range or /conversions/data-range."
+        },
+        {
+          "info": {
+            "name": "Conversions by range",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.involve.asia/api/conversions/range",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "start_date",
+                  "value": ""
+                },
+                {
+                  "name": "end_date",
+                  "value": ""
+                },
+                {
+                  "name": "page",
+                  "value": ""
+                },
+                {
+                  "name": "limit",
+                  "value": ""
+                },
+                {
+                  "name": "filters[conversion_id]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_id]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[conversion_status]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[preferred_currency]",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Pull conversions whose conversion datetime falls within a date range. Exclude today unless it's the 1st of the month — partial data trickles in for ~24 hours after the click."
+        },
+        {
+          "info": {
+            "name": "Conversions by date+time range",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.involve.asia/api/conversions/data-range",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "start_date",
+                  "value": ""
+                },
+                {
+                  "name": "end_date",
+                  "value": ""
+                },
+                {
+                  "name": "page",
+                  "value": ""
+                },
+                {
+                  "name": "limit",
+                  "value": ""
+                },
+                {
+                  "name": "filters[conversion_id]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_id]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[conversion_status]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[preferred_currency]",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Same shape as /conversions/range, but accepts second-precision timestamps. Use this when you need sub-day windows (e.g. an hourly sync that overlaps)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

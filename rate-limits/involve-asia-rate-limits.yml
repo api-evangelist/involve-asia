@@ -1,0 +1,74 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://api.involve.asia/llms.txt and https://api.involve.asia/docs/openapi.yaml
+  (both HTTP 200, first-party) plus https://api.involve.asia/skill.md — the
+  provider's own machine-readable docs artifacts, which are where Involve Asia
+  publishes its throttle numbers.
+docs: https://api.involve.asia/docs/
+description: >-
+  Published rate limits for the Involve Asia Publisher API. Involve Asia
+  documents the numbers but returns NO rate-limit response headers — an agent
+  gets the 429 status and nothing else, so client-side accounting is the only
+  way to stay under the throttle.
+limit_count: 2
+limits:
+  - name: account-throttle
+    scope: per-account
+    applies_to: all endpoints
+    window: 1 minute
+    limit: 60
+    unit: requests
+    burst: null
+    status_on_exhaustion: 429
+    note: >-
+      60 requests / minute / account across every endpoint, including
+      /authenticate. Documented in the OpenAPI info.description
+      ("Throttle: 60 requests / minute per account") and in llms.txt.
+  - name: deeplink-cap
+    scope: per-account
+    applies_to: POST /deeplink/generate
+    window: rolling 30 days
+    limit: 1000
+    unit: unique tracking links
+    burst: null
+    status_on_exhaustion: 429
+    note: >-
+      1,000 unique tracking links per rolling 30-day window per account. This is
+      a quota, not a throttle — it does not reset on a fixed boundary, and
+      repeated /deeplink/generate calls with the same inputs may mint additional
+      links against the cap because the operation has no idempotency key.
+response_headers:
+  rate_limit_headers: none
+  documented:
+    - name: request_id
+      purpose: >-
+        Per-response correlation id. Not a rate-limit signal — Involve Asia
+        support asks for it (plus the first 6 chars of your API key) when you
+        file a ticket.
+  note: >-
+    No X-RateLimit-*, RateLimit-* (RFC 9331 draft) or Retry-After headers are
+    documented or observed. A client cannot read remaining quota or reset time
+    from a response; it must count its own calls.
+exhaustion:
+  status: 429
+  body: >-
+    Standard {status, message, data} envelope; no problem+json. See
+    errors/involve-asia-problem-types.yml.
+  retry_guidance: >-
+    Provider-published backoff ladder — 250 ms, then 500 ms, then 1000 ms.
+    Verbatim from https://api.involve.asia/skill.md and llms.txt.
+related:
+  conventions: conventions/involve-asia-conventions.yml
+  errors: errors/involve-asia-problem-types.yml
+  authentication: authentication/involve-asia-authentication.yml
+x-evidence:
+  - url: https://api.involve.asia/llms.txt
+    status: 200
+    fetched: '2026-08-13'
+  - url: https://api.involve.asia/docs/openapi.yaml
+    status: 200
+    fetched: '2026-08-13'
+  - url: https://api.involve.asia/skill.md
+    status: 200
+    fetched: '2026-08-13'

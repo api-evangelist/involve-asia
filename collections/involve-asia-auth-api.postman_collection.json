@@ -1,0 +1,345 @@
+{
+  "item": [
+    {
+      "id": "32a7086d-17c5-4396-9958-e5be7529573b",
+      "name": "Auth",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c5f8e615-a319-4860-82df-0562f763cafc",
+          "name": "Authenticate",
+          "request": {
+            "name": "Authenticate",
+            "description": {
+              "content": "Exchange your API key and secret for a bearer token. Tokens expire after 2 hours — cache them and refresh proactively (or on 401).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "authenticate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your API key. Manage at https://app.involve.asia/v2/publisher/api-keys (Tools → API)."
+                },
+                {
+                  "disabled": false,
+                  "key": "secret",
+                  "value": "<string>",
+                  "description": "(Required) Your API secret. Treat like a password."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6e93e0ad-df88-4763-a703-3f0eaf29ab39",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Your API key. Manage at https://app.involve.asia/v2/publisher/api-keys (Tools → API).",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Your API secret. Treat like a password.",
+                        "type": "text/plain"
+                      },
+                      "key": "secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27a89732-bfc8-4c8d-9be1-c23cf200961a",
+              "name": "Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Your API key. Manage at https://app.involve.asia/v2/publisher/api-keys (Tools → API).",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Your API secret. Treat like a password.",
+                        "type": "text/plain"
+                      },
+                      "key": "secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94d938ef-3fbd-4418-8f28-20840603ba56",
+              "name": "Rate limit exceeded. Back off 250 → 500 → 1000 ms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Your API key. Manage at https://app.involve.asia/v2/publisher/api-keys (Tools → API).",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Your API secret. Treat like a password.",
+                        "type": "text/plain"
+                      },
+                      "key": "secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1f8053ee-0699-4b92-8168-f9b328e64d14",
+              "name": "Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Your API key. Manage at https://app.involve.asia/v2/publisher/api-keys (Tools → API).",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Your API secret. Treat like a password.",
+                        "type": "text/plain"
+                      },
+                      "key": "secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.involve.asia/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a31db2f6-2236-49d5-816e-ff1e34048ce1",
+    "name": "Involve Asia Publisher Auth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public-facing Publisher API. Bearer JWT auth (2 hours TTL). Throttle: 60 requests / minute per account.",
+      "type": "text/plain"
+    }
+  }
+}

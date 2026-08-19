@@ -1,0 +1,81 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  Registry searches against registry.npmjs.org, pypi.org, packagist.org,
+  rubygems.org and the GitHub API, plus the provider's own docs index
+  (https://api.involve.asia/llms.txt, HTTP 200) which enumerates every artifact
+  Involve Asia ships.
+description: >-
+  Involve Asia publishes NO client libraries. Its "Artifacts" section names four
+  machine-readable assets — a Claude Skill (skill.md), an llms.txt, an OpenAPI
+  3.1 spec and a Postman v2.1 collection — and no SDK in any language. Nothing
+  first-party exists on npm, PyPI, Packagist, RubyGems, Maven Central, NuGet,
+  crates.io or pkg.go.dev, and the company's GitHub organization is empty.
+  Integrators are expected to generate a client from the OpenAPI or call the
+  form-urlencoded endpoints directly.
+package_count: 0
+official_count: 0
+packages: []
+registries_checked:
+  - registry: npm
+    query: involve-asia / involveasia
+    result: no first-party package
+    checked: '2026-08-13'
+  - registry: pypi
+    query: involve-asia / involveasia / involve_asia
+    result: 404 on all three
+    checked: '2026-08-13'
+  - registry: packagist
+    query: involve asia
+    result: no first-party package
+    checked: '2026-08-13'
+  - registry: rubygems
+    query: involve asia
+    result: empty result set
+    checked: '2026-08-13'
+  - registry: maven-central
+    query: involve asia
+    result: no first-party package
+    checked: '2026-08-13'
+  - registry: nuget
+    query: involve asia
+    result: no first-party package
+    checked: '2026-08-13'
+  - registry: crates.io
+    query: involve asia
+    result: no first-party package
+    checked: '2026-08-13'
+  - registry: pkg.go.dev
+    query: involve asia
+    result: no first-party module
+    checked: '2026-08-13'
+source_code:
+  github_org: https://github.com/Involve-Asia
+  github_org_status: 200
+  public_repos: 0
+  org_created: '2025-12-08'
+  note: >-
+    A GitHub organization named "Involve Asia" (location Malaysia) exists and
+    resolves, but it publishes zero public repositories. It is recorded here as
+    a probe finding only — it is NOT wired as a GitHubOrganization pointer in
+    apis.yml, because an empty org with no link back from involve.asia is not
+    verified first-party source-code presence.
+generation_path:
+  note: >-
+    In the absence of an SDK, the provider's OpenAPI 3.1 spec is the supported
+    route to a typed client.
+  spec: openapi/_original/involve-asia-publisher-openapi.yml
+  published_spec: https://api.involve.asia/docs/openapi.yaml
+  postman: https://api.involve.asia/docs/collection.json
+x-evidence:
+  - url: https://registry.npmjs.org/-/v1/search?text=involveasia&size=10
+    status: 200
+    note: total 0.
+  - url: https://pypi.org/pypi/involve-asia/json
+    status: 404
+  - url: https://api.github.com/orgs/involve-asia
+    status: 200
+    note: public_repos 0.
+  - url: https://api.involve.asia/llms.txt
+    status: 200
+    note: "## Artifacts section lists skill.md, openapi.yaml and collection.json — no SDK."

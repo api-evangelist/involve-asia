@@ -1,0 +1,46 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://api.involve.asia/docs/ (HTTP 200 — the developer portal carries no
+  pricing, plan or quota-tier surface) and public Involve Asia marketing pages,
+  which are served behind a WAF that returns 403 to non-browser clients.
+description: >-
+  Involve Asia publishes no API plans. The Publisher API is a free capability of
+  a free publisher account on a performance-marketing network: publishers pay
+  nothing to join and are paid commission by advertisers; advertisers are
+  quoted per campaign (CPS/CPL/CPC plus network fees) through sales. There is no
+  tiered API pricing, no metered API billing, and no paid quota upgrade — the
+  60 req/min throttle and the 1,000-link/30-day deeplink cap apply to every
+  account alike.
+plan_count: 0
+plans: []
+model:
+  type: free-with-account
+  api_billing: none
+  who_pays: >-
+    Advertisers pay commission + network fees on performance; publishers pay
+    nothing. API access is bundled with a publisher account (Tools → API in the
+    dashboard) rather than sold.
+  quota_upgrade_path: >-
+    None published. The documented limits are network-wide defaults; see
+    rate-limits/involve-asia-rate-limits.yml.
+  enterprise_contact: https://involve.asia/
+  signup: https://involve.asia/publisher/
+notes:
+  - >-
+    Involve Asia's own marketing site has no /pricing page in its navigation;
+    advertiser cost is discussed editorially on the blog rather than as a rate
+    card, and campaign terms are set per advertiser.
+  - >-
+    Publisher payout thresholds (minimum withdrawal) are account terms, not API
+    plans, and are not recorded here.
+x-evidence:
+  - url: https://api.involve.asia/docs/
+    status: 200
+    note: Developer portal — nav has Dashboard + API key only; no pricing/plans section.
+  - url: https://api.involve.asia/llms.txt
+    status: 200
+    note: Provider's own docs index lists nine endpoints and four artifacts; no pricing entry.
+  - url: https://involve.asia/pricing/
+    status: 403
+    note: WAF blocks non-browser clients; no pricing page is linked from the site nav either.

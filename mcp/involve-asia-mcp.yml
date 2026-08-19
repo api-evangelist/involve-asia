@@ -1,40 +1,55 @@
 generated: '2026-07-19'
 method: derived
 status: candidate
-source: >-
-  Derived one candidate tool per operation from
-  openapi/involve-asia-publisher-openapi.yml. No official hosted/remote MCP
-  server was found; the provider ships a Claude Skill (skills/), an llms.txt,
-  and a Postman collection instead. This is a governance starting point.
+source: Derived one candidate tool per operation from openapi/involve-asia-publisher-openapi.yml. No official
+  hosted/remote MCP server was found; the provider ships a Claude Skill (skills/), an llms.txt, and a
+  Postman collection instead. This is a governance starting point.
 server:
   name: involve-asia-publisher
   transport: http
   url: null
 tools:
-  - name: authenticate
-    description: Exchange API key + secret for a bearer JWT (2h TTL).
-    source_operation: openapi/involve-asia-publisher-openapi.yml#authenticate
-  - name: list_all_conversions
-    description: Paginated dump of every conversion attributed to the account.
-    source_operation: openapi/involve-asia-publisher-openapi.yml#conversionsAll
-  - name: list_conversions_by_range
-    description: Conversions whose datetime falls within a YYYY-MM-DD date range.
-    source_operation: openapi/involve-asia-publisher-openapi.yml#conversionsRange
-  - name: list_conversions_by_datetime_range
-    description: Conversions within a second-precision datetime range.
-    source_operation: openapi/involve-asia-publisher-openapi.yml#conversionsDataRange
-  - name: list_offers
-    description: Paginated list of offers the account can promote, with filters.
-    source_operation: openapi/involve-asia-publisher-openapi.yml#offersAll
-  - name: list_last_updated_offers
-    description: Offers whose datetime_updated falls within a window (delta sync).
-    source_operation: openapi/involve-asia-publisher-openapi.yml#offersLastUpdatedRange
-  - name: list_campaigns
-    description: Campaign banners + landing pages the account may promote.
-    source_operation: openapi/involve-asia-publisher-openapi.yml#campaignsAll
-  - name: generate_deeplink
-    description: Convert a destination URL into a trackable affiliate link.
-    source_operation: openapi/involve-asia-publisher-openapi.yml#deeplink
-  - name: list_shopee_xtra_brands
-    description: Boosted-payout brands enrolled in Shopee Commission Xtra.
-    source_operation: openapi/involve-asia-publisher-openapi.yml#shopeeXtra
+- name: authenticate
+  description: Exchange API key + secret for a bearer JWT (2h TTL).
+  source_operation: openapi/involve-asia-publisher-openapi.yml#authenticate
+- name: list_all_conversions
+  description: Paginated dump of every conversion attributed to the account.
+  source_operation: openapi/involve-asia-publisher-openapi.yml#conversionsAll
+- name: list_conversions_by_range
+  description: Conversions whose datetime falls within a YYYY-MM-DD date range.
+  source_operation: openapi/involve-asia-publisher-openapi.yml#conversionsRange
+- name: list_conversions_by_datetime_range
+  description: Conversions within a second-precision datetime range.
+  source_operation: openapi/involve-asia-publisher-openapi.yml#conversionsDataRange
+- name: list_offers
+  description: Paginated list of offers the account can promote, with filters.
+  source_operation: openapi/involve-asia-publisher-openapi.yml#offersAll
+- name: list_last_updated_offers
+  description: Offers whose datetime_updated falls within a window (delta sync).
+  source_operation: openapi/involve-asia-publisher-openapi.yml#offersLastUpdatedRange
+- name: list_campaigns
+  description: Campaign banners + landing pages the account may promote.
+  source_operation: openapi/involve-asia-publisher-openapi.yml#campaignsAll
+- name: generate_deeplink
+  description: Convert a destination URL into a trackable affiliate link.
+  source_operation: openapi/involve-asia-publisher-openapi.yml#deeplink
+- name: list_shopee_xtra_brands
+  description: Boosted-payout brands enrolled in Shopee Commission Xtra.
+  source_operation: openapi/involve-asia-publisher-openapi.yml#shopeeXtra
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived
+  tools: 9
+  checked: '2026-08-13'
+  source: >-
+    catalog MCP census, re-probed 2026-08-13. No hosted/remote MCP endpoint and
+    no stdio package exist: https://api.involve.asia/mcp returns 404 (JSON),
+    https://mcp.involve.asia does not resolve (no DNS), the provider's own
+    artifact index at https://api.involve.asia/llms.txt (200) lists only
+    skill.md, openapi.yaml and collection.json, and no npm/PyPI package is
+    published (packages/involve-asia-packages.yml). The tools[] below are a
+    DERIVED candidate list, one per OpenAPI operation — nobody ships a server.

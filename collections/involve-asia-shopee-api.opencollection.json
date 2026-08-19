@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Involve Asia Publisher Auth Shopee API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shopee",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopee Xtra brands",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.involve.asia/api/shopeextra/all",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "page",
+                  "value": ""
+                },
+                {
+                  "name": "limit",
+                  "value": ""
+                },
+                {
+                  "name": "filters[country]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[shop_name]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[shop_type]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[sort_type]",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Boosted-payout brands enrolled in Shopee Commission Xtra. Refresh nightly. Page size cap is 200 (higher than other endpoints)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

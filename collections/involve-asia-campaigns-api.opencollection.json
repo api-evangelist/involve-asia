@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Involve Asia Publisher Auth Campaigns API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.involve.asia/api/campaigns/all",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "page",
+                  "value": ""
+                },
+                {
+                  "name": "limit",
+                  "value": ""
+                },
+                {
+                  "name": "filters[campaign_banner_id]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_id]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_name]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[start_date]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[end_date]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[country]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[category]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[coupons_only]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[with_banner]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[banner_size]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[commission_tracking]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[device_type]",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Campaign banners + landing pages your account is allowed to promote. Useful for surfacing seasonal vouchers and pre-built creatives."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

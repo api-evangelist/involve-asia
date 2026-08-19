@@ -1,0 +1,592 @@
+{
+  "item": [
+    {
+      "id": "b25b2b10-a796-4d05-a152-8c03df96b2ad",
+      "name": "Deeplink",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c4951c34-b7b7-478f-88de-5566e0dd8412",
+          "name": "Generate deeplink",
+          "request": {
+            "name": "Generate deeplink",
+            "description": {
+              "content": "Convert a destination URL into a trackable affiliate link. Capped at 1,000 unique links per rolling 30-day window per account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deeplink",
+                "generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "offer_id",
+                  "value": "<integer>",
+                  "description": "(Required) Offer ID from /offers/all. **Resolve first** — an unknown offer_id returns HTTP 500 with a generic 'Something went wrong' message (see Error model)."
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<string>",
+                  "description": "(Required) Destination URL — must belong to one of the offer's whitelisted domains. A non-whitelisted host returns the same HTTP 500."
+                },
+                {
+                  "disabled": false,
+                  "key": "aff_sub",
+                  "value": "<string>",
+                  "description": "Sub ID 1 — note the param name has no number. Surfaces on the conversion as `aff_sub1`. Up to 255 chars."
+                },
+                {
+                  "disabled": false,
+                  "key": "aff_sub2",
+                  "value": "<string>",
+                  "description": "Sub ID 2."
+                },
+                {
+                  "disabled": false,
+                  "key": "aff_sub3",
+                  "value": "<string>",
+                  "description": "Sub ID 3."
+                },
+                {
+                  "disabled": false,
+                  "key": "aff_sub4",
+                  "value": "<string>",
+                  "description": "Sub ID 4."
+                },
+                {
+                  "disabled": false,
+                  "key": "aff_sub5",
+                  "value": "<string>",
+                  "description": "Sub ID 5."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6ff4a1df-36e6-4b07-b7c0-d13456a251c6",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deeplink",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Offer ID from /offers/all. **Resolve first** — an unknown offer_id returns HTTP 500 with a generic 'Something went wrong' message (see Error model).",
+                        "type": "text/plain"
+                      },
+                      "key": "offer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Destination URL — must belong to one of the offer's whitelisted domains. A non-whitelisted host returns the same HTTP 500.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 1 — note the param name has no number. Surfaces on the conversion as `aff_sub1`. Up to 255 chars.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 2.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 3.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub3",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 4.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub4",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 5.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub5",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "530287e9-1f82-43b4-8ad5-e113d72d6df7",
+              "name": "Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deeplink",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Offer ID from /offers/all. **Resolve first** — an unknown offer_id returns HTTP 500 with a generic 'Something went wrong' message (see Error model).",
+                        "type": "text/plain"
+                      },
+                      "key": "offer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Destination URL — must belong to one of the offer's whitelisted domains. A non-whitelisted host returns the same HTTP 500.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 1 — note the param name has no number. Surfaces on the conversion as `aff_sub1`. Up to 255 chars.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 2.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 3.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub3",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 4.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub4",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 5.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub5",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33a5e01b-1464-478f-a19a-0ad6d24c82cf",
+              "name": "Rate limit exceeded. Back off 250 → 500 → 1000 ms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deeplink",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Offer ID from /offers/all. **Resolve first** — an unknown offer_id returns HTTP 500 with a generic 'Something went wrong' message (see Error model).",
+                        "type": "text/plain"
+                      },
+                      "key": "offer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Destination URL — must belong to one of the offer's whitelisted domains. A non-whitelisted host returns the same HTTP 500.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 1 — note the param name has no number. Surfaces on the conversion as `aff_sub1`. Up to 255 chars.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 2.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 3.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub3",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 4.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub4",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 5.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub5",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4325e13b-c871-4d58-8781-0c0390cf6f07",
+              "name": "Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deeplink",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Offer ID from /offers/all. **Resolve first** — an unknown offer_id returns HTTP 500 with a generic 'Something went wrong' message (see Error model).",
+                        "type": "text/plain"
+                      },
+                      "key": "offer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Destination URL — must belong to one of the offer's whitelisted domains. A non-whitelisted host returns the same HTTP 500.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 1 — note the param name has no number. Surfaces on the conversion as `aff_sub1`. Up to 255 chars.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 2.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 3.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub3",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 4.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub4",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Sub ID 5.",
+                        "type": "text/plain"
+                      },
+                      "key": "aff_sub5",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.involve.asia/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "114f8f51-35d2-4c2b-954c-16c510e1d8cf",
+    "name": "Involve Asia Publisher Auth Deeplink API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public-facing Publisher API. Bearer JWT auth (2 hours TTL). Throttle: 60 requests / minute per account.",
+      "type": "text/plain"
+    }
+  }
+}

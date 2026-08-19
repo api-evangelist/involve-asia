@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Involve Asia Publisher Auth API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.involve.asia/api/authenticate",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "key",
+                  "value": ""
+                },
+                {
+                  "name": "secret",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchange your API key and secret for a bearer token. Tokens expire after 2 hours — cache them and refresh proactively (or on 401)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

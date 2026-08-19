@@ -1,0 +1,1353 @@
+{
+  "item": [
+    {
+      "id": "bc0e6aef-dcc6-49ac-871e-0c9ee4f8e13e",
+      "name": "Offers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "acac721a-2169-4536-93f3-294c574cddef",
+          "name": "All offers",
+          "request": {
+            "name": "All offers",
+            "description": {
+              "content": "Paginated list of offers you have access to. Filter by country, category, application status, and offer status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "offers",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number (default 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Page size, default 100, max 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "`relevance` (default) · `show_latest_first` · `show_oldest_first` · `a_to_z` · `z_to_a` · `highest_commision_percent` · `lowest_commision_percent` · `highest_flat_payout` · `lowest_flat_payout`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_id]",
+                  "value": "<string>",
+                  "description": "Pipe-separated list, e.g. `25|5126`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_name]",
+                  "value": "<string>",
+                  "description": "Substring match on offer name."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_country]",
+                  "value": "<string>",
+                  "description": "Pipe-separated country names (English), e.g. `Malaysia|Indonesia`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_type]",
+                  "value": "<string>",
+                  "description": "Pipe-separated payout types: `cpa|cps|cpa_both|cpc|cpm`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[categories]",
+                  "value": "<string>",
+                  "description": "Pipe-separated, e.g. `Electronics|Fashion|Finance|Health & Beauty|Lifestyle|Marketplace|Other|Services|Travel`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[application_status]",
+                  "value": "<string>",
+                  "description": "Pipe-separated: `Approved|Blocked|Pending|Rejected`. Added 2024-10-01."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_status]",
+                  "value": "<string>",
+                  "description": "Pipe-separated: `Active|Paused`. Added 2024-10-01."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "985bb316-a6c6-4b0b-bcd1-11ca41032503",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offers",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`relevance` (default) · `show_latest_first` · `show_oldest_first` · `a_to_z` · `z_to_a` · `highest_commision_percent` · `lowest_commision_percent` · `highest_flat_payout` · `lowest_flat_payout`.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list, e.g. `25|5126`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names (English), e.g. `Malaysia|Indonesia`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated payout types: `cpa|cps|cpa_both|cpc|cpm`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_type]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated, e.g. `Electronics|Fashion|Finance|Health & Beauty|Lifestyle|Marketplace|Other|Services|Travel`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[categories]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Approved|Blocked|Pending|Rejected`. Added 2024-10-01.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[application_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Active|Paused`. Added 2024-10-01.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_status]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bfd466e-fbc2-4746-95cf-5698c0af191d",
+              "name": "Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offers",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`relevance` (default) · `show_latest_first` · `show_oldest_first` · `a_to_z` · `z_to_a` · `highest_commision_percent` · `lowest_commision_percent` · `highest_flat_payout` · `lowest_flat_payout`.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list, e.g. `25|5126`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names (English), e.g. `Malaysia|Indonesia`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated payout types: `cpa|cps|cpa_both|cpc|cpm`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_type]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated, e.g. `Electronics|Fashion|Finance|Health & Beauty|Lifestyle|Marketplace|Other|Services|Travel`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[categories]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Approved|Blocked|Pending|Rejected`. Added 2024-10-01.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[application_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Active|Paused`. Added 2024-10-01.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_status]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f37cc7e9-d5e4-4329-b051-d4597f5e358c",
+              "name": "Rate limit exceeded. Back off 250 → 500 → 1000 ms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offers",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`relevance` (default) · `show_latest_first` · `show_oldest_first` · `a_to_z` · `z_to_a` · `highest_commision_percent` · `lowest_commision_percent` · `highest_flat_payout` · `lowest_flat_payout`.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list, e.g. `25|5126`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names (English), e.g. `Malaysia|Indonesia`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated payout types: `cpa|cps|cpa_both|cpc|cpm`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_type]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated, e.g. `Electronics|Fashion|Finance|Health & Beauty|Lifestyle|Marketplace|Other|Services|Travel`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[categories]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Approved|Blocked|Pending|Rejected`. Added 2024-10-01.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[application_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Active|Paused`. Added 2024-10-01.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_status]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4d5f38e8-561b-47a7-b5dd-3a402fddb1f9",
+              "name": "Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offers",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`relevance` (default) · `show_latest_first` · `show_oldest_first` · `a_to_z` · `z_to_a` · `highest_commision_percent` · `lowest_commision_percent` · `highest_flat_payout` · `lowest_flat_payout`.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list, e.g. `25|5126`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names (English), e.g. `Malaysia|Indonesia`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated payout types: `cpa|cps|cpa_both|cpc|cpm`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_type]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated, e.g. `Electronics|Fashion|Finance|Health & Beauty|Lifestyle|Marketplace|Other|Services|Travel`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[categories]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Approved|Blocked|Pending|Rejected`. Added 2024-10-01.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[application_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Active|Paused`. Added 2024-10-01.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_status]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87fe347f-b768-47ec-968b-9bebe1079aa8",
+          "name": "Last-updated offers",
+          "request": {
+            "name": "Last-updated offers",
+            "description": {
+              "content": "Pull only offers whose `datetime_updated` falls within a window. Cheaper than /offers/all for delta sync.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "offers",
+                "last-updated-range"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>",
+                  "description": "(Required) Inclusive start, `YYYY-MM-DD HH:MM:SS`."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>",
+                  "description": "(Required) Inclusive end, `YYYY-MM-DD HH:MM:SS`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number (default 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Page size, default 100, max 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Same options as /offers/all."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_country]",
+                  "value": "<string>",
+                  "description": "Pipe-separated country names."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[categories]",
+                  "value": "<string>",
+                  "description": "Pipe-separated categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[application_status]",
+                  "value": "<string>",
+                  "description": "Pipe-separated: `Approved|Blocked|Pending|Rejected`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_status]",
+                  "value": "<string>",
+                  "description": "Pipe-separated: `Active|Paused`."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8b2649ad-5376-4909-8d8c-653d6055c01e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offers",
+                    "last-updated-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Same options as /offers/all.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated categories.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[categories]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Approved|Blocked|Pending|Rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[application_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Active|Paused`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_status]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89729ae3-06fc-4e6e-9812-a97b30cb394e",
+              "name": "Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offers",
+                    "last-updated-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Same options as /offers/all.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated categories.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[categories]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Approved|Blocked|Pending|Rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[application_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Active|Paused`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_status]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0e2cddf4-4237-40a3-95ae-fd10dbdc846f",
+              "name": "Rate limit exceeded. Back off 250 → 500 → 1000 ms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offers",
+                    "last-updated-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Same options as /offers/all.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated categories.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[categories]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Approved|Blocked|Pending|Rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[application_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Active|Paused`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_status]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6f0e4709-f55c-431b-b255-c30b8256be51",
+              "name": "Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offers",
+                    "last-updated-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Same options as /offers/all.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated country names.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated categories.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[categories]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Approved|Blocked|Pending|Rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[application_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `Active|Paused`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_status]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.involve.asia/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4368b70a-328a-4be8-8c7b-39fd55aa49e2",
+    "name": "Involve Asia Publisher Auth Offers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public-facing Publisher API. Bearer JWT auth (2 hours TTL). Throttle: 60 requests / minute per account.",
+      "type": "text/plain"
+    }
+  }
+}

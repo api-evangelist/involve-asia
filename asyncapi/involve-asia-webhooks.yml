@@ -1,0 +1,91 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  Involve Asia's own postback/S2S documentation surface — https://involve.asia/glossary-term/postback-url/
+  and the help-centre articles "PostBack — Useful Information" and "What Is
+  Server-Based Tracking? (Postback URL / S2S)" — corroborated by third-party
+  integrators that wire the surface in production (wecantrack, AnyTrack,
+  Quickwork). Every one of those first-party URLs is currently unreadable by a
+  machine (see x-evidence): the marketing host WAF-403s non-browser clients and
+  the help centre migrated to a Zoho portal whose article API answers
+  UNAUTHORIZED and whose every path returns the same 24,680-byte SPA shell.
+asyncapi_spec: null
+description: >-
+  Involve Asia ships an event surface, and it is NOT in the Publisher API. The
+  nine documented REST operations are all pull-only; there is no `webhooks:`
+  block in the OpenAPI 3.1 spec and no callback object on any operation. The
+  push channel is the affiliate-network POSTBACK (server-to-server / S2S): a
+  publisher registers a postback URL in the dashboard and Involve Asia fires an
+  HTTP request at it when a conversion is created or its status changes. This
+  is the mechanism third-party attribution platforms actually integrate against,
+  and at least one of them recommends it over the API for status updates.
+event_surface:
+  present: true
+  style: postback
+  direction: provider-to-consumer
+  transport: https
+  configuration: >-
+    Publisher-configured. The postback URL is registered inside the Involve Asia
+    publisher dashboard (app.involve.asia), not through the Publisher API — there
+    is no endpoint to create, list or rotate a postback subscription
+    programmatically.
+  audience: publishers
+  confidence: medium
+event_count: 1
+events:
+  - name: conversion
+    trigger: >-
+      Fired when a conversion is created and again when an existing conversion's
+      status changes (e.g. pending -> approved / rejected).
+    payload: >-
+      Query-string macros substituted into the publisher's registered URL. The
+      exact macro/token names are NOT publicly documented — see gaps below.
+    confidence: medium
+    corroboration:
+      - https://wecantrack.com/involve-asia-integration/
+      - https://involve.asia/glossary-term/postback-url/
+gaps:
+  - >-
+    NOT RECORDED, because it is not publicly readable: the macro/token catalogue
+    (parameter names and meanings), the HTTP method, the expected 200 acknowledgement
+    contract, signing/verification, IP allowlist, and retry/auto-disable policy.
+    These live in the customer-only help centre and in the dashboard UI. They are
+    deliberately left out rather than guessed.
+  - >-
+    No AsyncAPI, CloudEvents, or JSON Schema description of the postback payload
+    is published, so an agent cannot bind to this surface from a contract.
+  - >-
+    No API-managed subscription lifecycle: an agent cannot self-register a
+    postback endpoint.
+reconciliation_fallback:
+  note: >-
+    Involve Asia's own published Claude Skill tells consumers to reconcile status
+    flips by POLLING, not by listening — "re-query /conversions/range over the
+    last 7 days to detect status flips from pending to rejected"
+    (https://api.involve.asia/skill.md). That is the supported, documented path
+    for API consumers today.
+  operations:
+    - conversionsRange
+    - conversionsDataRange
+x-evidence:
+  - url: https://api.involve.asia/docs/openapi.yaml
+    status: 200
+    note: OpenAPI 3.1.0 parsed — 9 paths, no `webhooks` key, no callbacks.
+  - url: https://api.involve.asia/skill.md
+    status: 200
+    note: Recommends polling /conversions/range for status reconciliation.
+  - url: https://involve.asia/glossary-term/postback-url/
+    status: 403
+    note: First-party glossary entry for Postback URL; WAF blocks non-browser clients.
+  - url: https://help.involve.asia/hc/en-us/articles/33127421161113-PostBack-Useful-Information
+    status: 301
+    note: First-party article; 301 to https://helpcentre.involve.asia/ (article not preserved).
+  - url: https://helpcentre.involve.asia/api/v1/search?searchStr=postback&limit=20
+    status: 401
+    note: '{"errorCode":"UNAUTHORIZED"} — help-centre KB is customer-only.'
+  - url: https://helpcentre.involve.asia/portal/en/kb/articles/postback-useful-information
+    status: 200
+    note: Soft 200 — identical 24,680-byte SPA shell served for every portal path.
+  - url: https://wecantrack.com/involve-asia-integration/
+    status: 200
+    note: Third-party integrator documenting the Involve Asia postback wiring.

@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Involve Asia Publisher Auth Offers API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Offers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "All offers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.involve.asia/api/offers/all",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "page",
+                  "value": ""
+                },
+                {
+                  "name": "limit",
+                  "value": ""
+                },
+                {
+                  "name": "sort_by",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_id]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_name]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_country]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_type]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[categories]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[application_status]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_status]",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Paginated list of offers you have access to. Filter by country, category, application status, and offer status."
+        },
+        {
+          "info": {
+            "name": "Last-updated offers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.involve.asia/api/offers/last-updated-range",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "start_date",
+                  "value": ""
+                },
+                {
+                  "name": "end_date",
+                  "value": ""
+                },
+                {
+                  "name": "page",
+                  "value": ""
+                },
+                {
+                  "name": "limit",
+                  "value": ""
+                },
+                {
+                  "name": "sort_by",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_country]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[categories]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[application_status]",
+                  "value": ""
+                },
+                {
+                  "name": "filters[offer_status]",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Pull only offers whose `datetime_updated` falls within a window. Cheaper than /offers/all for delta sync."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1778 @@
+{
+  "item": [
+    {
+      "id": "94aa20b9-2e59-47a4-a907-a4dcc25efbce",
+      "name": "Conversions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "df020d6a-4cc4-48b2-aeb7-90156048f2a5",
+          "name": "All conversions",
+          "request": {
+            "name": "All conversions",
+            "description": {
+              "content": "Paginated dump of every conversion attributed to your account. Useful for cold syncs; for incrementals use /conversions/range or /conversions/data-range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversions",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number (default 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Page size, default 100, max 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[conversion_id]",
+                  "value": "<string>",
+                  "description": "Pipe-separated list, e.g. `899191|7008168`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_id]",
+                  "value": "<integer>",
+                  "description": "Restrict to a single offer."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_name]",
+                  "value": "<string>",
+                  "description": "Substring match on offer name."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[conversion_status]",
+                  "value": "<string>",
+                  "description": "Pipe-separated: `pending|approved|rejected`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[preferred_currency]",
+                  "value": "<string>",
+                  "description": "ISO 4217 (`USD` or `MYR`). Defaults to the conversion's local currency."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "756e1c4e-526c-4057-85c1-ffaf181cc4e0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list, e.g. `899191|7008168`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `pending|approved|rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "ISO 4217 (`USD` or `MYR`). Defaults to the conversion's local currency.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec2e97ce-75ce-4233-9121-686baaa55ec5",
+              "name": "Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list, e.g. `899191|7008168`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `pending|approved|rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "ISO 4217 (`USD` or `MYR`). Defaults to the conversion's local currency.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e8390f7f-f8db-4671-ac71-d4cd6fcb9341",
+              "name": "Rate limit exceeded. Back off 250 → 500 → 1000 ms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list, e.g. `899191|7008168`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `pending|approved|rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "ISO 4217 (`USD` or `MYR`). Defaults to the conversion's local currency.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7d91454e-6786-46b3-9232-c85ce033fa08",
+              "name": "Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list, e.g. `899191|7008168`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on offer name.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `pending|approved|rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "ISO 4217 (`USD` or `MYR`). Defaults to the conversion's local currency.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27a4e908-cb58-4644-a31e-f36d4ad2b96f",
+          "name": "Conversions by range",
+          "request": {
+            "name": "Conversions by range",
+            "description": {
+              "content": "Pull conversions whose conversion datetime falls within a date range. Exclude today unless it's the 1st of the month — partial data trickles in for ~24 hours after the click.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversions",
+                "range"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>",
+                  "description": "(Required) Inclusive start, `YYYY-MM-DD`."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>",
+                  "description": "(Required) Inclusive end, `YYYY-MM-DD`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number (default 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Page size, default 100, max 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[conversion_id]",
+                  "value": "<string>",
+                  "description": "Pipe-separated list of conversion IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_id]",
+                  "value": "<integer>",
+                  "description": "Restrict to a single offer."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[conversion_status]",
+                  "value": "<string>",
+                  "description": "Pipe-separated: `pending|approved|rejected`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[preferred_currency]",
+                  "value": "<string>",
+                  "description": "`USD` or `MYR`. Defaults to local currency."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "907f6140-a806-4cec-9c88-41c026a7e5b9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list of conversion IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `pending|approved|rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`USD` or `MYR`. Defaults to local currency.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08442910-e35d-4219-bf47-a2f1e27d8123",
+              "name": "Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list of conversion IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `pending|approved|rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`USD` or `MYR`. Defaults to local currency.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "362f979a-a2ca-46b7-a4fe-b78faf935bd5",
+              "name": "Rate limit exceeded. Back off 250 → 500 → 1000 ms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list of conversion IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `pending|approved|rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`USD` or `MYR`. Defaults to local currency.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f0937a95-f737-4fee-a4d0-ab65d5bb6b6f",
+              "name": "Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list of conversion IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated: `pending|approved|rejected`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`USD` or `MYR`. Defaults to local currency.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ee7f0d7-852c-4039-857a-abe326d7656c",
+          "name": "Conversions by date+time range",
+          "request": {
+            "name": "Conversions by date+time range",
+            "description": {
+              "content": "Same shape as /conversions/range, but accepts second-precision timestamps. Use this when you need sub-day windows (e.g. an hourly sync that overlaps).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversions",
+                "data-range"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>",
+                  "description": "(Required) Inclusive start, `YYYY-MM-DD HH:MM:SS`."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>",
+                  "description": "(Required) Inclusive end, `YYYY-MM-DD HH:MM:SS`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number (default 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Page size, default 100, max 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[conversion_id]",
+                  "value": "<string>",
+                  "description": "Pipe-separated list of conversion IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[offer_id]",
+                  "value": "<integer>",
+                  "description": "Restrict to a single offer."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[conversion_status]",
+                  "value": "<string>",
+                  "description": "Pipe-separated statuses."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[preferred_currency]",
+                  "value": "<string>",
+                  "description": "`USD` or `MYR`."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "029fe8aa-550c-423f-b80c-2b24da9b55c0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "data-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list of conversion IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated statuses.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`USD` or `MYR`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd0491f7-6db7-455e-a357-d59f8732004e",
+              "name": "Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "data-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list of conversion IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated statuses.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`USD` or `MYR`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0b56b165-09e9-40ba-b0c5-76eb6a21ca0d",
+              "name": "Rate limit exceeded. Back off 250 → 500 → 1000 ms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "data-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list of conversion IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated statuses.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`USD` or `MYR`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b307e222-b40e-4221-b54b-f1a998a95609",
+              "name": "Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversions",
+                    "data-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive start, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Inclusive end, `YYYY-MM-DD HH:MM:SS`.",
+                        "type": "text/plain"
+                      },
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 100, max 100.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated list of conversion IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to a single offer.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[offer_id]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated statuses.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[conversion_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`USD` or `MYR`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[preferred_currency]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.involve.asia/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a48656c9-4074-40a0-9f3c-fecc0454e0a8",
+    "name": "Involve Asia Publisher Auth Conversions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public-facing Publisher API. Bearer JWT auth (2 hours TTL). Throttle: 60 requests / minute per account.",
+      "type": "text/plain"
+    }
+  }
+}

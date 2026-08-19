@@ -1,0 +1,550 @@
+{
+  "item": [
+    {
+      "id": "2de7224c-e437-4b59-a2e4-192f03114083",
+      "name": "Shopee",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eab433de-745d-4b02-a57d-b5fa0209f5c7",
+          "name": "Shopee Xtra brands",
+          "request": {
+            "name": "Shopee Xtra brands",
+            "description": {
+              "content": "Boosted-payout brands enrolled in Shopee Commission Xtra. Refresh nightly. Page size cap is 200 (higher than other endpoints).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shopeextra",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number (default 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Page size, default 200, **max 200**."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[country]",
+                  "value": "<string>",
+                  "description": "One of `Malaysia`, `Singapore`, `Indonesia`, `Thailand`, `Vietnam`, `Philippines`, `Taiwan`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[shop_name]",
+                  "value": "<string>",
+                  "description": "Substring match on shop name (or a Shopee shop URL — the shop_id is parsed out)."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[shop_type]",
+                  "value": "<string>",
+                  "description": "`mall` or `preferred`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[sort_type]",
+                  "value": "<string>",
+                  "description": "`latest_updated`, `high_commission`, or default (shop_name ASC)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "12763195-841c-4eba-9cdd-c5da524e66e4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shopeextra",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 200, **max 200**.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "One of `Malaysia`, `Singapore`, `Indonesia`, `Thailand`, `Vietnam`, `Philippines`, `Taiwan`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on shop name (or a Shopee shop URL — the shop_id is parsed out).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[shop_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`mall` or `preferred`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[shop_type]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`latest_updated`, `high_commission`, or default (shop_name ASC).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[sort_type]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60a23ea4-f604-4afa-bd5a-40b613615abd",
+              "name": "Unauthorized. May indicate (a) bad/expired token — re-auth and retry once, OR (b) missing required params (validation errors are returned with status 401 today, not 422). Inspect the `message` field. Token errors may also break the standard envelope (e.g. `{message, status_code}` with no `status` key).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shopeextra",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 200, **max 200**.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "One of `Malaysia`, `Singapore`, `Indonesia`, `Thailand`, `Vietnam`, `Philippines`, `Taiwan`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on shop name (or a Shopee shop URL — the shop_id is parsed out).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[shop_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`mall` or `preferred`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[shop_type]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`latest_updated`, `high_commission`, or default (shop_name ASC).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[sort_type]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11517843-94e8-4c0d-87dc-5b1115fb4e5d",
+              "name": "Rate limit exceeded. Back off 250 → 500 → 1000 ms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shopeextra",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 200, **max 200**.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "One of `Malaysia`, `Singapore`, `Indonesia`, `Thailand`, `Vietnam`, `Philippines`, `Taiwan`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on shop name (or a Shopee shop URL — the shop_id is parsed out).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[shop_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`mall` or `preferred`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[shop_type]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`latest_updated`, `high_commission`, or default (shop_name ASC).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[sort_type]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b42d615e-59be-4ac0-b153-fc31c24289dd",
+              "name": "Server-side error. On `/deeplink/generate`, a 500 is also returned for invalid `offer_id` or non-whitelisted destination URLs — these are PERMANENT client errors despite the 5xx code. Inspect `message`; retry only if you have reason to believe the request was previously valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shopeextra",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer {token}",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number (default 1).",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page size, default 200, **max 200**.",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "One of `Malaysia`, `Singapore`, `Indonesia`, `Thailand`, `Vietnam`, `Philippines`, `Taiwan`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Substring match on shop name (or a Shopee shop URL — the shop_id is parsed out).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[shop_name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`mall` or `preferred`.",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[shop_type]",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "`latest_updated`, `high_commission`, or default (shop_name ASC).",
+                        "type": "text/plain"
+                      },
+                      "key": "filters[sort_type]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.involve.asia/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a25a2f18-a141-47a9-877f-5038ac59fef9",
+    "name": "Involve Asia Publisher Auth Shopee API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public-facing Publisher API. Bearer JWT auth (2 hours TTL). Throttle: 60 requests / minute per account.",
+      "type": "text/plain"
+    }
+  }
+}
