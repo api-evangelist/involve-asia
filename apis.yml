@@ -42,6 +42,19 @@ tags:
 - Publishers
 - Creators
 - Conversions
+- Deep Links
+- Commissions
+- E-Commerce
+- Southeast Asia
+- Shopee
+- Company
+tags_raw:
+- Affiliate Marketing
+- Performance Marketing
+- Partnership Marketing
+- Publishers
+- Creators
+- Conversions
 - Deeplinks
 - Commissions
 - Ecommerce
@@ -55,6 +68,8 @@ apis:
   humanURL: https://api.involve.asia/docs/
   baseURL: https://api.involve.asia/api
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
