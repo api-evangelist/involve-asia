@@ -12,6 +12,18 @@ description: >-
   60 requests/minute throttle, and a 1,000-link rolling 30-day deeplink cap.
   Involve Asia publishes first-party machine-readable artifacts: an OpenAPI 3.1
   spec, a Claude Skill, an llms.txt, and a Postman collection.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
