@@ -1,0 +1,35 @@
+slug: involve-asia
+provider: Involve Asia
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Conversions
+  spec_file: involve-asia-conversions-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: POST /conversions/all  conversionsAll  All conversions — publishers programmatically pull
+    conversion (commission) data
+  reason: Affiliate/performance-marketing conversion (commission) reporting is a digital marketing capability;
+    the operations return conversion tracking data for affiliate campaigns. Could arguably touch demand
+    generation, but digital marketing (affiliate/paid media) is the closest fit.
+- tag: Deeplink
+  spec_file: involve-asia-deeplink-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: POST /deeplink/generate  deeplink  Generate deeplink — generate trackable affiliate deeplinks
+  reason: Generating trackable affiliate links is an affiliate/digital marketing execution function, mapping
+    to Digital Marketing Management.

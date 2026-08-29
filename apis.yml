@@ -161,6 +161,9 @@ apis:
   - type: APIReference
     url: https://api.involve.asia/docs/
 common:
+- type: CapabilityMap
+  url: capabilities/involve-asia-capability-edges.yml
+  name: Involve Asia Business Capability Map
 - type: Website
   url: https://involve.asia
 - type: DeveloperPortal
