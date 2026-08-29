@@ -10,8 +10,14 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: publisherApi
-  url: ../openapi/involve-asia-publisher-openapi.yml
+- name: authApi
+  url: ../openapi/involve-asia-auth-api-openapi.yml
+  type: openapi
+- name: deeplinkApi
+  url: ../openapi/involve-asia-deeplink-api-openapi.yml
+  type: openapi
+- name: offersApi
+  url: ../openapi/involve-asia-offers-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: generate-deeplink

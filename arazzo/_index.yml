@@ -1,6 +1,6 @@
-generated: '2026-07-19'
-method: derived
-source: Native Arazzo workflows over openapi/involve-asia-publisher-openapi.yml.
+x-generated: '2026-07-19'
+x-method: derived
+x-source: Native Arazzo workflows over openapi/involve-asia-publisher-openapi.yml.
 workflows:
   - file: involve-asia-generate-deeplink-workflow.yml
     workflowId: generate-deeplink
