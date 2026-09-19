@@ -55,7 +55,7 @@ tags:
 - Partnership Marketing
 - Publishers
 - Creators
-- Conversions
+- Conversion
 - Deep Links
 - Commissions
 - E-Commerce
@@ -112,6 +112,8 @@ apis:
   humanURL: https://api.involve.asia/docs/
   baseURL: https://api.involve.asia/api
   tags:
+  - Conversion
+  tags_raw:
   - Conversions
   properties:
   - type: OpenAPI
