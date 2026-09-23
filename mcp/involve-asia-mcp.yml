@@ -38,18 +38,7 @@ tools:
   source_operation: openapi/involve-asia-publisher-openapi.yml#shopeeXtra
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: unknown
   verified: derived
   tools: 9
-  checked: '2026-08-13'
-  source: >-
-    catalog MCP census, re-probed 2026-08-13. No hosted/remote MCP endpoint and
-    no stdio package exist: https://api.involve.asia/mcp returns 404 (JSON),
-    https://mcp.involve.asia does not resolve (no DNS), the provider's own
-    artifact index at https://api.involve.asia/llms.txt (200) lists only
-    skill.md, openapi.yaml and collection.json, and no npm/PyPI package is
-    published (packages/involve-asia-packages.yml). The tools[] below are a
-    DERIVED candidate list, one per OpenAPI operation — nobody ships a server.
+  checked: '2026-08-12'
+  source: catalog MCP census

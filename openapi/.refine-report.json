@@ -1,12 +1,7 @@
 {
   "provider": "involve-asia",
   "sources": [
-    "involve-asia-auth-api-openapi.yml",
-    "involve-asia-campaigns-api-openapi.yml",
-    "involve-asia-conversions-api-openapi.yml",
-    "involve-asia-deeplink-api-openapi.yml",
-    "involve-asia-offers-api-openapi.yml",
-    "involve-asia-shopee-api-openapi.yml"
+    "_original/involve-asia-publisher-openapi.yml"
   ],
   "outputs": [
     "involve-asia-auth-api-openapi.yml",
@@ -19,6 +14,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "involve-asia-publisher-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "involve-asia-publisher-openapi.yml: declared missing tag: Auth",
+    "involve-asia-publisher-openapi.yml: declared missing tag: Campaigns",
+    "involve-asia-publisher-openapi.yml: declared missing tag: Conversions",
+    "involve-asia-publisher-openapi.yml: declared missing tag: Deeplink",
+    "involve-asia-publisher-openapi.yml: declared missing tag: Offers",
+    "involve-asia-publisher-openapi.yml: declared missing tag: Shopee",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "involve-asia-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "involve-asia-campaigns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "involve-asia-conversions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "involve-asia-deeplink-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "involve-asia-offers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "involve-asia-shopee-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
