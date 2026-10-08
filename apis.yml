@@ -165,6 +165,8 @@ apis:
   - type: APIReference
     url: https://api.involve.asia/docs/
 common:
+- type: Plans
+  url: plans/involve-asia-plans-pricing.yml
 - url: https://involve.asia/blog/
   type: Blog
 - url: https://involve.asia/feed/
