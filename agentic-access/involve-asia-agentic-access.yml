@@ -1,15 +1,19 @@
-generated: '2026-07-19'
+generated: '2026-09-23'
 method: generated
-source: openapi/involve-asia-publisher-openapi.yml
+source: openapi/involve-asia-auth-api-openapi.yml, openapi/involve-asia-campaigns-api-openapi.yml,
+  openapi/involve-asia-conversions-api-openapi.yml, openapi/involve-asia-deeplink-api-openapi.yml,
+  openapi/involve-asia-offers-api-openapi.yml, openapi/involve-asia-shopee-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 9
   by_action_class:
-    acting: 9
+    acting: 8
+    connected: 1
   by_consequence:
-    write: 9
+    write: 8
+    read: 1
   human_in_the_loop_required: 0
 operations:
 - path: /authenticate
@@ -28,6 +32,16 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /campaigns/all
+  method: post
+  operationId: campaignsAll
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /conversions/all
   method: post
   operationId: conversionsAll
@@ -76,6 +90,22 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /deeplink/generate
+  method: post
+  operationId: deeplink
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /offers/all
   method: post
   operationId: offersAll
@@ -95,38 +125,6 @@ operations:
 - path: /offers/last-updated-range
   method: post
   operationId: offersLastUpdatedRange
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /campaigns/all
-  method: post
-  operationId: campaignsAll
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /deeplink/generate
-  method: post
-  operationId: deeplink
   x-agentic-access:
     action-class: acting
     consequence: write
