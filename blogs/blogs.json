@@ -2,6 +2,27 @@
   "repo": "involve-asia",
   "feeds": [
     {
+      "source": "https://involve.asia/blog/",
+      "feed_url": "https://involve.asia/blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
+      "source": "https://involve.asia/feed/",
+      "feed_url": "https://involve.asia/feed/",
+      "title": "",
+      "saved": 2,
+      "method": "feed"
+    },
+    {
+      "source": "https://involve.asia/publisher-blog/",
+      "feed_url": "https://involve.asia/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
       "source": "https://helpcentre.involve.asia/",
       "feed_url": "https://helpcentre.involve.asia/",
       "title": "",
@@ -9,6 +30,6 @@
       "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-10-03T12:30:02Z"
+  "post_count": 2,
+  "fetched": "2026-10-10T13:15:00Z"
 }
