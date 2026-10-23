@@ -12,7 +12,7 @@
       "source": "https://involve.asia/feed/",
       "feed_url": "https://involve.asia/feed/",
       "title": "",
-      "saved": 2,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -23,6 +23,13 @@
       "method": "discovered"
     },
     {
+      "source": "https://involve.asia/blog/feed/",
+      "feed_url": "https://involve.asia/blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://helpcentre.involve.asia/",
       "feed_url": "https://helpcentre.involve.asia/",
       "title": "",
@@ -30,6 +37,6 @@
       "method": "none"
     }
   ],
-  "post_count": 2,
-  "fetched": "2026-10-10T13:15:00Z"
+  "post_count": 9,
+  "fetched": "2026-10-17T14:53:57Z"
 }
