@@ -64,6 +64,153 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Involve Asia is a company surfaced as a portfolio company of 500-global and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Involve Asia (Involve Asia Technologies Sdn. Bhd.) is a leading affiliate and partnership-marketing network across Southeast Asia and Taiwan, connecting advertisers with publishers and creators to grow revenue through performance marketing. Its public Publisher API lets publishers programmatically pull conversion (commission) data, browse offers and campaigns, generate trackable affiliate deeplinks, and access Shopee Commission Xtra boosted-payout brands — without logging into the dashboard. The API is REST over HTTPS with bearer-JWT auth (2-hour token TTL), form-urlencoded requests, page-number pagination, a 60 requests/minute throttle, and a 1,000-link rolling 30-day deeplink cap. Involve Asia publishes first-party machine-readable artifacts: an OpenAPI 3.1 spec, a Claude Skill, an llms.txt, and a Postman collection.
 
-Backed by: 500-global — https://involve.asia
+**Areas:** Affiliate Marketing · Performance Marketing · Partnership Marketing · Publishers · Creators · Conversion · Deep Links · Commissions · E-Commerce · Southeast Asia · Shopee · Company
+
+## Involve Asia on APIs.io
+
+Everything profiled for Involve Asia is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/involve-asia/](https://apis.io/providers/involve-asia/)** — or go straight to one of the APIs or properties below.
+
+### APIs (6)
+
+- [Involve Asia Auth API](https://apis.io/apis/involve-asia/involve-asia-auth-api/) — The Auth API from Involve Asia — 1 operation(s) for auth.
+- [Involve Asia Campaigns API](https://apis.io/apis/involve-asia/involve-asia-campaigns-api/) — The Campaigns API from Involve Asia — 1 operation(s) for campaigns.
+- [Involve Asia Conversions API](https://apis.io/apis/involve-asia/involve-asia-conversions-api/) — The Conversions API from Involve Asia — 3 operation(s) for conversions.
+- [Involve Asia Deeplink API](https://apis.io/apis/involve-asia/involve-asia-deeplink-api/) — The Deeplink API from Involve Asia — 1 operation(s) for deeplink.
+- [Involve Asia Offers API](https://apis.io/apis/involve-asia/involve-asia-offers-api/) — The Offers API from Involve Asia — 2 operation(s) for offers.
+- [Involve Asia Shopee API](https://apis.io/apis/involve-asia/involve-asia-shopee-api/) — The Shopee API from Involve Asia — 1 operation(s) for shopee.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (2)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Involve Asia Generate Deeplink](https://apis.io/arazzos/involve-asia/involve-asia-generate-deeplink-workflow/)
+- [Involve Asia Sync Conversions](https://apis.io/arazzos/involve-asia/involve-asia-sync-conversions-workflow/)
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Involve Asia Webhooks](https://apis.io/asyncapis/involve-asia/involve-asia-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [involve-asia-publisher](https://apis.io/servers/involve-asia/involve-asia-publisher/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Involve Asia Agentic Access](https://apis.io/agentic-access/involve-asia/involve-asia-agentic-access/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Involve Asia Publisher Auth API](https://apis.io/collections/involve-asia/open-involve-asia-auth-api/)
+- [Involve Asia Publisher Auth Campaigns API](https://apis.io/collections/involve-asia/open-involve-asia-campaigns-api/)
+- [Involve Asia Publisher Auth Conversions API](https://apis.io/collections/involve-asia/open-involve-asia-conversions-api/)
+- [Involve Asia Publisher Auth Deeplink API](https://apis.io/collections/involve-asia/open-involve-asia-deeplink-api/)
+- [Involve Asia Publisher Auth Offers API](https://apis.io/collections/involve-asia/open-involve-asia-offers-api/)
+- [Involve Asia Publisher Auth Shopee API](https://apis.io/collections/involve-asia/open-involve-asia-shopee-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Involve Asia Publisher Overlay](https://apis.io/overlays/involve-asia/involve-asia-publisher-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Involve Asia Authentication](https://apis.io/security/involve-asia/involve-asia-authentication/)
+- [Involve Asia Domain Security](https://apis.io/security/involve-asia/involve-asia-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Involve Asia Plans Pricing](https://apis.io/plans/involve-asia/involve-asia-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Involve Asia Rate Limits](https://apis.io/rate-limits/involve-asia/involve-asia-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://involve.asia)
+- [Documentation](https://involve.asia/partners/api-overview/)
+- [Getting started](https://api.involve.asia/docs/#quickstart)
+- [API reference](https://api.involve.asia/docs/)
+- [Sign up](https://involve.asia/publisher/)
+- [Support](https://helpcentre.involve.asia/)
+- [Blog](https://involve.asia/blog/)
+- [Terms of service](https://involve.asia/terms-conditions/)
+- [Privacy policy](https://app.involve.asia/publisher/privacypolicy)
+
+## API Evangelist rating
+
+**Kin Score 49.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 56.4 |
+| Contract governance | 4.5 |
+| Operational transparency | 44.7 |
+| Developer ergonomics | 69.0 |
+| Access clarity | 34.2 |
+
+**Agent readiness 32.0** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/involve-asia/](https://apis.io/providers/involve-asia/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Involve Asia: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/involve-asia/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
